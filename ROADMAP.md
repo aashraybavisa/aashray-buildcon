@@ -48,7 +48,8 @@
 
 - [ ] Wire quote + contact to an approved form-service or serverless endpoint
 - [x] Validation, spam guard, error and success states
-- [ ] **Decision needed:** where should leads go — email / spreadsheet / CRM?
+- [x] Google Sheets receiver and setup guide
+- [ ] **Input needed:** deploy the Apps Script and provide its `/exec` URL
 
 ## Stage 8 · Admin section — ⏳ REMAINING
 
