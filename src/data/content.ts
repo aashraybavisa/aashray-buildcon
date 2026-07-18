@@ -25,7 +25,9 @@ const en = {
   },
   language: {
     english: 'English',
+    englishShort: 'EN',
     gujarati: 'ગુજરાતી',
+    gujaratiShort: 'ગુજ',
     switchToEnglish: 'Switch to English',
     switchToGujarati: 'Switch to Gujarati',
   },
@@ -204,7 +206,9 @@ const gu: typeof en = {
   },
   language: {
     english: 'English',
+    englishShort: 'EN',
     gujarati: 'ગુજરાતી',
+    gujaratiShort: 'ગુજ',
     switchToEnglish: 'Englishમાં બદલો',
     switchToGujarati: 'ગુજરાતીમાં બદલો',
   },

@@ -1,20 +1,21 @@
-import { Menu, Phone } from 'lucide-react-native'
 import { router, type Href } from 'expo-router'
+import { Menu, Phone } from 'lucide-react-native'
 import { useState } from 'react'
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native'
 
 import { Button } from '@/components/button'
+import { LanguageSwitch } from '@/components/language-switch'
 import { Logo } from '@/components/logo'
-import { useResponsive } from '@/hooks/use-responsive'
-import { useTheme } from '@/theme/theme'
 import { company } from '@/data/company'
+import { useResponsive } from '@/hooks/use-responsive'
 import { useLanguage } from '@/i18n/language-provider'
+import { useTheme } from '@/theme/theme'
 
 /** Shared route header for marketing routes. */
 export function SiteHeader() {
   const theme = useTheme()
   const { isNarrow } = useResponsive()
-  const { copy, language, setLanguage } = useLanguage()
+  const { copy } = useLanguage()
   const [menuOpen, setMenuOpen] = useState(false)
   const navigation = [
     { label: copy.navigation.services, path: '/services' },
@@ -68,20 +69,7 @@ export function SiteHeader() {
                 </Pressable>
               ))}
             </View>
-            <Pressable
-              accessibilityLabel={
-                language === 'en' ? copy.language.switchToGujarati : copy.language.switchToEnglish
-              }
-              accessibilityRole="button"
-              onPress={() => setLanguage(language === 'en' ? 'gu' : 'en')}
-              style={[styles.language, { borderColor: theme.colors.border }]}
-            >
-              <Text
-                style={{ color: theme.colors.textStrong, fontFamily: theme.fonts.bodySemibold, fontSize: 12 }}
-              >
-                {language === 'en' ? copy.language.gujarati : copy.language.english}
-              </Text>
-            </Pressable>
+            <LanguageSwitch />
             <Button
               size="sm"
               variant="ghost"
@@ -127,25 +115,13 @@ export function SiteHeader() {
               </Pressable>
             )
           })}
-          <Pressable
-            accessibilityLabel={
-              language === 'en' ? copy.language.switchToGujarati : copy.language.switchToEnglish
-            }
-            accessibilityRole="button"
-            onPress={() => setLanguage(language === 'en' ? 'gu' : 'en')}
-            style={[styles.language, { borderColor: theme.colors.border }]}
-          >
-            <Text
-              style={{ color: theme.colors.textStrong, fontFamily: theme.fonts.bodySemibold, fontSize: 14 }}
-            >
-              {language === 'en' ? copy.language.gujarati : copy.language.english}
-            </Text>
-          </Pressable>
+          <LanguageSwitch mobile />
         </View>
       )}
     </View>
   )
 }
+
 const styles = StyleSheet.create({
   bar: { borderBottomWidth: 1 },
   content: {
@@ -161,14 +137,6 @@ const styles = StyleSheet.create({
   actions: { alignItems: 'center', flexDirection: 'row', gap: 8 },
   desktopNav: { alignItems: 'center', flexDirection: 'row', gap: 4 },
   desktopLink: { paddingHorizontal: 8, paddingVertical: 10 },
-  language: {
-    alignItems: 'center',
-    borderWidth: 1,
-    borderRadius: 8,
-    justifyContent: 'center',
-    paddingHorizontal: 9,
-    paddingVertical: 7,
-  },
   menu: { alignItems: 'center', height: 44, justifyContent: 'center', width: 44 },
   mobileMenu: { borderTopWidth: 1, paddingHorizontal: 24, paddingVertical: 8 },
   mobileLink: { paddingVertical: 14 },
