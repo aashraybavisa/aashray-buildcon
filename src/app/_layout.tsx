@@ -1,10 +1,3 @@
-import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter'
-import {
-  SplineSans_400Regular,
-  SplineSans_500Medium,
-  SplineSans_600SemiBold,
-  SplineSans_700Bold,
-} from '@expo-google-fonts/spline-sans'
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
@@ -21,14 +14,14 @@ SplashScreen.preventAutoHideAsync()
 export default function TabLayout() {
   const colorScheme = useColorScheme()
   const [fontsLoaded, fontError] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
-    SplineSans_400Regular,
-    SplineSans_500Medium,
-    SplineSans_600SemiBold,
-    SplineSans_700Bold,
+    Inter_400Regular: require('@/assets/fonts/Inter_400Regular.ttf'),
+    Inter_500Medium: require('@/assets/fonts/Inter_500Medium.ttf'),
+    Inter_600SemiBold: require('@/assets/fonts/Inter_600SemiBold.ttf'),
+    Inter_700Bold: require('@/assets/fonts/Inter_700Bold.ttf'),
+    SplineSans_400Regular: require('@/assets/fonts/SplineSans_400Regular.ttf'),
+    SplineSans_500Medium: require('@/assets/fonts/SplineSans_500Medium.ttf'),
+    SplineSans_600SemiBold: require('@/assets/fonts/SplineSans_600SemiBold.ttf'),
+    SplineSans_700Bold: require('@/assets/fonts/SplineSans_700Bold.ttf'),
   })
 
   useEffect(() => {
