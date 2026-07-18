@@ -1,10 +1,10 @@
 export type Service = {
-  slug: string;
-  icon: string; // lucide icon name (rendered via Icon component)
-  title: string;
-  excerpt: string;
-  body: string;
-};
+  slug: string
+  icon: string // lucide icon name (rendered via Icon component)
+  title: string
+  excerpt: string
+  body: string
+}
 
 export const services: Service[] = [
   {
@@ -49,6 +49,6 @@ export const services: Service[] = [
     excerpt: 'Ongoing upkeep and annual maintenance contracts to protect your asset.',
     body: 'Preventive and reactive maintenance, plus annual maintenance contracts for residential and commercial properties.',
   },
-];
+]
 
-export const serviceCategories = ['All', 'Residential', 'Commercial', 'Renovation'] as const;
+export const serviceCategories = ['All', 'Residential', 'Commercial', 'Renovation'] as const

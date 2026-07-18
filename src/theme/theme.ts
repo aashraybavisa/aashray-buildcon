@@ -2,7 +2,7 @@
  * useTheme — returns the active colour set + shadows for the current colour scheme,
  * plus the shared token groups. Follows the OS colour scheme.
  */
-import { useColorScheme } from 'react-native';
+import { useColorScheme } from 'react-native'
 
 import {
   darkColors,
@@ -15,21 +15,21 @@ import {
   radius,
   space,
   type ThemeColors,
-} from './tokens';
+} from './tokens'
 
 export type Theme = {
-  scheme: 'light' | 'dark';
-  colors: ThemeColors;
-  shadows: typeof lightShadows;
-  space: typeof space;
-  radius: typeof radius;
-  fonts: typeof fonts;
-  fontSize: typeof fontSize;
-  layout: typeof layout;
-};
+  scheme: 'light' | 'dark'
+  colors: ThemeColors
+  shadows: typeof lightShadows
+  space: typeof space
+  radius: typeof radius
+  fonts: typeof fonts
+  fontSize: typeof fontSize
+  layout: typeof layout
+}
 
 export function useTheme(): Theme {
-  const scheme = useColorScheme() === 'dark' ? 'dark' : 'light';
+  const scheme = useColorScheme() === 'dark' ? 'dark' : 'light'
   return {
     scheme,
     colors: scheme === 'dark' ? darkColors : lightColors,
@@ -39,7 +39,7 @@ export function useTheme(): Theme {
     fonts,
     fontSize,
     layout,
-  };
+  }
 }
 
-export { space, radius, fonts, fontSize, layout } from './tokens';
+export { space, radius, fonts, fontSize, layout } from './tokens'

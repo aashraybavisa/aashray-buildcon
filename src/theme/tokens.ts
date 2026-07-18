@@ -2,7 +2,7 @@
  * Aashray Buildcon — design tokens (React Native).
  * Ported from the design-kit CSS tokens. Brand: safety amber on graphite/charcoal.
  */
-import { Platform, type TextStyle } from 'react-native';
+import { Platform, type TextStyle } from 'react-native'
 
 /* ---- Raw palette ---- */
 export const palette = {
@@ -35,17 +35,41 @@ export const palette = {
   danger50: '#FBE9E9',
   info500: '#208AEF',
   info50: '#E7F1FC',
-} as const;
+} as const
 
 /* ---- Semantic colour themes ---- */
 export type ThemeColors = {
-  surfacePage: string; surfaceRaised: string; surfaceCard: string; surfaceSunken: string; surfaceInverse: string;
-  textStrong: string; textBody: string; textMuted: string; textInverse: string; textOnAccent: string;
-  accent: string; accentHover: string; accentPress: string; accentSoft: string; accentBorder: string;
-  border: string; borderStrong: string; focusRing: string;
-  success: string; successSoft: string; danger: string; dangerSoft: string; info: string; infoSoft: string;
-  bandBg: string; bandDeep: string; bandBorder: string; bandText: string; bandTextMuted: string; bandTextFaint: string;
-};
+  surfacePage: string
+  surfaceRaised: string
+  surfaceCard: string
+  surfaceSunken: string
+  surfaceInverse: string
+  textStrong: string
+  textBody: string
+  textMuted: string
+  textInverse: string
+  textOnAccent: string
+  accent: string
+  accentHover: string
+  accentPress: string
+  accentSoft: string
+  accentBorder: string
+  border: string
+  borderStrong: string
+  focusRing: string
+  success: string
+  successSoft: string
+  danger: string
+  dangerSoft: string
+  info: string
+  infoSoft: string
+  bandBg: string
+  bandDeep: string
+  bandBorder: string
+  bandText: string
+  bandTextMuted: string
+  bandTextFaint: string
+}
 
 export const lightColors: ThemeColors = {
   surfacePage: palette.white,
@@ -84,7 +108,7 @@ export const lightColors: ThemeColors = {
   bandText: palette.white,
   bandTextMuted: palette.graphite300,
   bandTextFaint: palette.graphite400,
-} as const;
+} as const
 
 export const darkColors: typeof lightColors = {
   surfacePage: palette.graphite900,
@@ -122,7 +146,7 @@ export const darkColors: typeof lightColors = {
   bandText: palette.white,
   bandTextMuted: palette.graphite300,
   bandTextFaint: palette.graphite400,
-};
+}
 
 /* ---- Spacing (4-based) ---- */
 export const space = {
@@ -137,7 +161,7 @@ export const space = {
   8: 64,
   9: 96,
   10: 128,
-} as const;
+} as const
 
 /* ---- Radii ---- */
 export const radius = {
@@ -146,7 +170,7 @@ export const radius = {
   lg: 16,
   xl: 24,
   pill: 999,
-} as const;
+} as const
 
 /* ---- Font families (loaded via @expo-google-fonts in _layout) ---- */
 export const fonts = {
@@ -159,7 +183,7 @@ export const fonts = {
   bodySemibold: 'Inter_600SemiBold',
   bodyBold: 'Inter_700Bold',
   mono: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }),
-} as const;
+} as const
 
 /* ---- Type scale (px) ---- */
 export const fontSize = {
@@ -172,7 +196,7 @@ export const fontSize = {
   base: 16,
   sm: 14,
   xs: 12,
-} as const;
+} as const
 
 /* ---- Layout ---- */
 export const layout = {
@@ -180,30 +204,78 @@ export const layout = {
   containerNarrow: 760,
   gutter: space[5],
   headerHeight: 68,
-} as const;
+} as const
 
 /* ---- Shadows (per scheme) ---- */
 type Shadow = Pick<TextStyle, never> & {
-  shadowColor: string;
-  shadowOffset: { width: number; height: number };
-  shadowOpacity: number;
-  shadowRadius: number;
-  elevation: number;
-};
+  shadowColor: string
+  shadowOffset: { width: number; height: number }
+  shadowOpacity: number
+  shadowRadius: number
+  elevation: number
+}
 
 export const lightShadows: { sm: Shadow; md: Shadow; lg: Shadow; accent: Shadow } = {
-  sm: { shadowColor: '#14181B', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.08, shadowRadius: 2, elevation: 1 },
-  md: { shadowColor: '#14181B', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 12, elevation: 4 },
-  lg: { shadowColor: '#14181B', shadowOffset: { width: 0, height: 12 }, shadowOpacity: 0.14, shadowRadius: 28, elevation: 10 },
-  accent: { shadowColor: palette.amber500, shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.32, shadowRadius: 20, elevation: 6 },
-};
+  sm: {
+    shadowColor: '#14181B',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.08,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  md: {
+    shadowColor: '#14181B',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    elevation: 4,
+  },
+  lg: {
+    shadowColor: '#14181B',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.14,
+    shadowRadius: 28,
+    elevation: 10,
+  },
+  accent: {
+    shadowColor: palette.amber500,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.32,
+    shadowRadius: 20,
+    elevation: 6,
+  },
+}
 
 export const darkShadows: typeof lightShadows = {
-  sm: { shadowColor: '#000000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.4, shadowRadius: 2, elevation: 1 },
-  md: { shadowColor: '#000000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.45, shadowRadius: 12, elevation: 4 },
-  lg: { shadowColor: '#000000', shadowOffset: { width: 0, height: 12 }, shadowOpacity: 0.55, shadowRadius: 28, elevation: 10 },
-  accent: { shadowColor: palette.amber500, shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.3, shadowRadius: 20, elevation: 6 },
-};
+  sm: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    elevation: 1,
+  },
+  md: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.45,
+    shadowRadius: 12,
+    elevation: 4,
+  },
+  lg: {
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.55,
+    shadowRadius: 28,
+    elevation: 10,
+  },
+  accent: {
+    shadowColor: palette.amber500,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
+    elevation: 6,
+  },
+}
 
 /* ---- Breakpoints ---- */
-export const breakpoints = { sm: 600, md: 900, lg: 1200 } as const;
+export const breakpoints = { sm: 600, md: 900, lg: 1200 } as const

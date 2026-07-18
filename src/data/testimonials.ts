@@ -1,9 +1,9 @@
 export type Testimonial = {
-  quote: string;
-  name: string;
-  role: string;
-  rating: number;
-};
+  quote: string
+  name: string
+  role: string
+  rating: number
+}
 
 export const testimonials: Testimonial[] = [
   {
@@ -27,4 +27,4 @@ export const testimonials: Testimonial[] = [
     role: 'Director, Aditya Group',
     rating: 5,
   },
-];
+]

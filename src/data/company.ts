@@ -17,18 +17,18 @@ export const company = {
     facebook: 'https://facebook.com/',
     linkedin: 'https://linkedin.com/',
   },
-} as const;
+} as const
 
 export const stats = [
   { value: '15', suffix: '+', label: 'Years building' },
   { value: '240', suffix: '+', label: 'Projects delivered' },
   { value: '1.8M', suffix: ' sq-ft', label: 'Built area' },
   { value: '98', suffix: '%', label: 'On-time handover' },
-] as const;
+] as const
 
 export const processSteps = [
   { n: '1', title: 'Consult', desc: 'We visit the site, understand your brief and budget.' },
   { n: '2', title: 'Design', desc: 'Drawings, 3D views and a fixed, itemised quote.' },
   { n: '3', title: 'Build', desc: 'Certified teams, weekly updates, strict safety.' },
   { n: '4', title: 'Handover', desc: 'Snag-free handover with warranty and support.' },
-] as const;
+] as const

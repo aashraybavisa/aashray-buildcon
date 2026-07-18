@@ -1,16 +1,110 @@
-import { Menu, Phone } from 'lucide-react-native';
-import { router } from 'expo-router';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Menu, Phone } from 'lucide-react-native'
+import { router, type Href } from 'expo-router'
+import { useState } from 'react'
+import { Linking, Pressable, StyleSheet, Text, View } from 'react-native'
 
-import { Button } from '@/components/button';
-import { Logo } from '@/components/logo';
-import { useResponsive } from '@/hooks/use-responsive';
-import { useTheme } from '@/theme/theme';
+import { Button } from '@/components/button'
+import { Logo } from '@/components/logo'
+import { useResponsive } from '@/hooks/use-responsive'
+import { useTheme } from '@/theme/theme'
+import { company } from '@/data/company'
 
 /** Shared route header. Navigation destinations are added alongside their route screens. */
 export function SiteHeader() {
-  const theme = useTheme();
-  const { isNarrow } = useResponsive();
-  return <View style={[styles.bar, { backgroundColor: theme.colors.surfacePage, borderBottomColor: theme.colors.border }]}><View style={styles.content}><Pressable accessibilityRole="link" accessibilityLabel="Aashray Buildcon home" onPress={() => router.replace('/')}><Logo /></Pressable>{isNarrow ? <Pressable accessibilityRole="button" accessibilityLabel="Open menu" style={styles.menu}><Menu color={theme.colors.textStrong} size={24} /></Pressable> : <View style={styles.actions}><Button size="sm" variant="ghost" iconLeft={<Phone color={theme.colors.accentPress} size={15} />} onPress={() => {}}>Call Us</Button><Button size="sm" onPress={() => {}}>Request a Quote</Button></View>}</View></View>;
+  const theme = useTheme()
+  const { isNarrow } = useResponsive()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const navigate = (path: '/' | '/projects' | '/quote') => {
+    setMenuOpen(false)
+    router.push(path as Href)
+  }
+  return (
+    <View
+      style={[
+        styles.bar,
+        { backgroundColor: theme.colors.surfacePage, borderBottomColor: theme.colors.border },
+      ]}
+    >
+      <View style={styles.content}>
+        <Pressable
+          accessibilityRole="link"
+          accessibilityLabel="Aashray Buildcon home"
+          onPress={() => navigate('/')}
+        >
+          <Logo />
+        </Pressable>
+        {isNarrow ? (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Open menu"
+            onPress={() => setMenuOpen((open) => !open)}
+            style={styles.menu}
+          >
+            <Menu color={theme.colors.textStrong} size={24} />
+          </Pressable>
+        ) : (
+          <View style={styles.actions}>
+            <Button
+              size="sm"
+              variant="ghost"
+              iconLeft={<Phone color={theme.colors.accentPress} size={15} />}
+              onPress={() => Linking.openURL(company.phoneHref)}
+            >
+              Call Us
+            </Button>
+            <Button size="sm" onPress={() => navigate('/quote')}>
+              Request a Quote
+            </Button>
+          </View>
+        )}
+      </View>
+      {isNarrow && menuOpen && (
+        <View
+          style={[
+            styles.mobileMenu,
+            { backgroundColor: theme.colors.surfacePage, borderTopColor: theme.colors.border },
+          ]}
+        >
+          {(['Home', 'Projects', 'Request a Quote'] as const).map((label) => {
+            const path = label === 'Home' ? '/' : label === 'Projects' ? '/projects' : '/quote'
+            return (
+              <Pressable
+                accessibilityRole="link"
+                key={label}
+                onPress={() => navigate(path)}
+                style={styles.mobileLink}
+              >
+                <Text
+                  style={{
+                    color: theme.colors.textStrong,
+                    fontFamily: theme.fonts.displaySemibold,
+                    fontSize: 17,
+                  }}
+                >
+                  {label}
+                </Text>
+              </Pressable>
+            )
+          })}
+        </View>
+      )}
+    </View>
+  )
 }
-const styles = StyleSheet.create({ bar: { borderBottomWidth: 1 }, content: { alignItems: 'center', flexDirection: 'row', height: 68, justifyContent: 'space-between', marginHorizontal: 'auto', maxWidth: 1200, paddingHorizontal: 24, width: '100%' }, actions: { alignItems: 'center', flexDirection: 'row', gap: 8 }, menu: { alignItems: 'center', height: 44, justifyContent: 'center', width: 44 } });
+const styles = StyleSheet.create({
+  bar: { borderBottomWidth: 1 },
+  content: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 68,
+    justifyContent: 'space-between',
+    marginHorizontal: 'auto',
+    maxWidth: 1200,
+    paddingHorizontal: 24,
+    width: '100%',
+  },
+  actions: { alignItems: 'center', flexDirection: 'row', gap: 8 },
+  menu: { alignItems: 'center', height: 44, justifyContent: 'center', width: 44 },
+  mobileMenu: { borderTopWidth: 1, paddingHorizontal: 24, paddingVertical: 8 },
+  mobileLink: { paddingVertical: 14 },
+})
