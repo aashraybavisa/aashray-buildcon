@@ -4,19 +4,19 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 import { useResponsive } from '@/hooks/use-responsive'
 import { useTheme } from '@/theme/theme'
-import { copy } from '@/data/content'
-
-const tabs = [
-  { label: copy.navigation.home, path: '/', Icon: Home },
-  { label: copy.navigation.work, path: '/projects', Icon: Building2 },
-  { label: copy.common.quote, path: '/quote', Icon: FileText },
-] as const
+import { useLanguage } from '@/i18n/language-provider'
 
 /** Fixed app-style navigation for narrow screens; desktop uses the header CTAs instead. */
 export function MobileBottomNav() {
   const theme = useTheme()
+  const { copy } = useLanguage()
   const { isNarrow } = useResponsive()
   const pathname = usePathname()
+  const tabs = [
+    { label: copy.navigation.home, path: '/', Icon: Home },
+    { label: copy.navigation.work, path: '/projects', Icon: Building2 },
+    { label: copy.common.quote, path: '/quote', Icon: FileText },
+  ] as const
   if (!isNarrow) return null
   return (
     <View

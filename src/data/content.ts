@@ -1,4 +1,4 @@
-export const copy = {
+const en = {
   common: {
     quote: 'Request a Quote',
     callUs: 'Call Us',
@@ -22,6 +22,12 @@ export const copy = {
     work: 'Work',
     openMenu: 'Open menu',
     homeLink: 'Aashray Buildcon home',
+  },
+  language: {
+    english: 'English',
+    gujarati: 'ગુજરાતી',
+    switchToEnglish: 'Switch to English',
+    switchToGujarati: 'Switch to Gujarati',
   },
   footer: {
     description: 'Building Rajkot’s future with clear quotes, dependable teams, and snag-free handovers.',
@@ -139,6 +145,8 @@ export const copy = {
       'Learn about Aashray Buildcon’s approach to dependable, safety-first construction in Rajkot and Saurashtra.',
     eyebrow: 'About Aashray Buildcon',
     title: 'Local builders with a long view.',
+    heroLead:
+      'Since {since}, we’ve helped families and businesses across {region} turn ambitious plans into dependable places.',
     approachEyebrow: 'Our approach',
     approachTitle: 'Build with confidence, not guesswork.',
     approachLead:
@@ -167,4 +175,182 @@ export const copy = {
     ctaTitle: 'Let’s build something that lasts.',
     ctaLead: 'Bring us your brief and we’ll help you move forward with clarity.',
   },
-} as const
+}
+
+const gu: typeof en = {
+  common: {
+    quote: 'ક્વોટ માટે વિનંતી',
+    callUs: 'અમને કૉલ કરો',
+    sendRequest: 'વિનંતી મોકલો',
+    sending: 'મોકલી રહ્યા છીએ…',
+    sendMessage: 'સંદેશ મોકલો',
+    thankYouQuote: 'આભાર — તમારી વિનંતી મળી ગઈ છે.',
+    thankYouQuoteLead: 'તમારા પ્રોજેક્ટ વિશે વાત કરવા અમે આપેલા નંબર પર કૉલ કરીશું.',
+    thankYouContact: 'આભાર. અમે ટૂંક સમયમાં સંપર્ક કરીશું.',
+    configuredError: 'લીડ ડિલિવરી હજી ગોઠવાઈ નથી. કૃપા કરીને અમને સીધો કૉલ કરો.',
+    configuredContactError: 'લીડ ડિલિવરી હજી ગોઠવાઈ નથી. કૃપા કરીને અમને ઇમેઇલ કરો અથવા કૉલ કરો.',
+    deliveryError: 'તમારી વિનંતી મોકલી શકાઈ નથી. કૃપા કરીને ફરી પ્રયાસ કરો અથવા અમને સીધો કૉલ કરો.',
+    contactDeliveryError: 'તમારો સંદેશ મોકલી શકાયો નથી. કૃપા કરીને ફરી પ્રયાસ કરો અથવા અમારો સંપર્ક કરો.',
+  },
+  navigation: {
+    home: 'મુખ્ય પૃષ્ઠ',
+    services: 'સેવાઓ',
+    projects: 'પ્રોજેક્ટ્સ',
+    about: 'અમારા વિશે',
+    contact: 'સંપર્ક',
+    work: 'કામ',
+    openMenu: 'મેનૂ ખોલો',
+    homeLink: 'Aashray Buildcon મુખ્ય પૃષ્ઠ',
+  },
+  language: {
+    english: 'English',
+    gujarati: 'ગુજરાતી',
+    switchToEnglish: 'Englishમાં બદલો',
+    switchToGujarati: 'ગુજરાતીમાં બદલો',
+  },
+  footer: {
+    description: 'સ્પષ્ટ ક્વોટ, વિશ્વસનીય ટીમો અને સરળ હેન્ડઓવર સાથે રાજકોટનું ભવિષ્ય બનાવી રહ્યા છીએ.',
+    rights: 'બધા હકો સુરક્ષિત.',
+  },
+  home: {
+    seoTitle: 'Aashray Buildcon',
+    seoDescription:
+      'Aashray Buildcon રાજકોટ અને સૌરાષ્ટ્રમાં રહેણાંક, વ્યાવસાયિક અને નવીનીકરણ પ્રોજેક્ટ્સ પૂરાં કરે છે.',
+    location: 'રાજકોટ · ગુજરાત',
+    title: 'રાજકોટનું ભવિષ્ય, એક સમયે એક પ્રોજેક્ટ બનાવી રહ્યા છીએ.',
+    lead: 'સ્પષ્ટ ક્વોટ. જવાબદાર ટીમ. સમયસર અને બજેટમાં ગુણવત્તાયુક્ત બાંધકામ.',
+    projects: 'પ્રોજેક્ટ્સ જુઓ',
+    servicesEyebrow: 'અમે શું બનાવીએ છીએ',
+    servicesTitle: 'તમારી જરૂરિયાતને કેન્દ્રમાં રાખીને.',
+    servicesLead: 'પ્રથમ સાઇટ વિઝિટથી અંતિમ હેન્ડઓવર સુધી એક જવાબદાર ટીમ.',
+    projectsEyebrow: 'પસંદગીનું કામ',
+    projectsTitle: 'સમયની કસોટી પર ખરાં ઊતરતા પ્રોજેક્ટ્સ.',
+    projectsLead: 'કસ્ટમ ઘરોથી વ્યાવસાયિક જગ્યાઓ સુધી, દરેક બાંધકામ મહત્વની વિગતો માટે આયોજનબદ્ધ હોય છે.',
+    allProjects: 'બધા પ્રોજેક્ટ્સ જુઓ',
+    processEyebrow: 'અમે કેવી રીતે કામ કરીએ છીએ',
+    processTitle: 'બાંધકામની વધુ સારી રીત.',
+    processLead: 'અમારી ચાર-પગલાંની પ્રક્રિયા કામને દૃશ્યમાન, નિર્ણયો સ્પષ્ટ અને સમયપત્રકને ગતિશીલ રાખે છે.',
+    testimonialsEyebrow: 'ગ્રાહકોના અનુભવ',
+    testimonialsTitle: 'હેન્ડઓવર તો માત્ર શરૂઆત છે.',
+    ctaTitle: 'તમારો પ્રોજેક્ટ શરૂ કરવા તૈયાર છો?',
+    ctaLead: 'તમે શું આયોજન કરી રહ્યા છો તે જણાવો. અમે સાઇટ વિઝિટ અને સ્પષ્ટ, વિગતવાર ક્વોટ ગોઠવીશું.',
+    trust: 'લાઇસન્સવાળી ટીમો · સાપ્તાહિક પ્રગતિ અપડેટ્સ · સરળ હેન્ડઓવર',
+  },
+  projects: {
+    seoTitle: 'પ્રોજેક્ટ્સ',
+    seoDescription: 'સૌરાષ્ટ્રમાં Aashray Buildcon ના રહેણાંક, વ્યાવસાયિક અને નવીનીકરણ કાર્યો જુઓ.',
+    eyebrow: 'અમારું કામ',
+    title: 'તમે જે રીતે રહો અને કામ કરો તે માટે બનાવેલું.',
+    lead: 'સૌરાષ્ટ્રમાં રહેણાંક, વ્યાવસાયિક અને નવીનીકરણ પ્રોજેક્ટ્સની પસંદગી.',
+    filters: ['બધા', 'રહેણાંક', 'વ્યાવસાયિક', 'નવીનીકરણ'],
+  },
+  quote: {
+    seoTitle: 'ક્વોટ માટે વિનંતી',
+    seoDescription: 'તમારા બાંધકામ પ્રોજેક્ટ વિશે Aashray Buildcon ને જણાવો અને સ્પષ્ટ, વિગતવાર ક્વોટ મેળવો.',
+    eyebrow: 'વાતચીત શરૂ કરો',
+    title: 'સ્પષ્ટ, વિગતવાર ક્વોટ મેળવો.',
+    lead: 'મૂળભૂત વિગતો આપો અને અમારી ટીમ એક કામકાજી દિવસમાં સાઇટ વિઝિટ ગોઠવશે.',
+    fields: {
+      name: 'તમારું નામ',
+      phone: 'ફોન નંબર',
+      project: 'તમે શું આયોજન કરી રહ્યા છો?',
+      details: 'પ્રોજેક્ટ વિગતો',
+    },
+    placeholders: {
+      name: 'પૂરું નામ',
+      phone: '+91',
+      project: 'વિલા, ઓફિસ, નવીનીકરણ…',
+      details: 'સ્થળ, અંદાજિત વિસ્તાર, સમયરેખા અને ક્વોટ તૈયાર કરવામાં મદદરૂપ કોઈપણ વિગતો.',
+    },
+    errors: {
+      name: 'કૃપા કરીને તમારું નામ લખો.',
+      phone: 'માન્ય ફોન નંબર લખો.',
+      project: 'તમે શું આયોજન કરી રહ્યા છો તે જણાવો.',
+    },
+    callNote: 'હમણાં વાત કરવી છે? કૉલ કરો',
+  },
+  contact: {
+    seoTitle: 'સંપર્ક',
+    seoDescription:
+      'બાંધકામ પ્રોજેક્ટ પૂછપરછ, સાઇટ વિઝિટ અને સામાન્ય પ્રશ્નો માટે રાજકોટમાં Aashray Buildcon નો સંપર્ક કરો.',
+    eyebrow: 'સંપર્ક',
+    title: 'તમારું આગામી બાંધકામ અમારી સાથે લાવો.',
+    lead: 'પ્રોજેક્ટ પૂછપરછ, મુલાકાતો અને સામાન્ય પ્રશ્નો માટે અમારી રાજકોટ ટીમનો સંપર્ક કરો.',
+    fields: { name: 'તમારું નામ', email: 'ઇમેઇલ', message: 'અમે કેવી રીતે મદદ કરી શકીએ?' },
+    placeholders: {
+      name: 'પૂરું નામ',
+      email: 'you@example.com',
+      message: 'તમારી પૂછપરછ વિશે થોડી માહિતી આપો.',
+    },
+    errors: {
+      name: 'કૃપા કરીને તમારું નામ લખો.',
+      email: 'માન્ય ઇમેઇલ સરનામું લખો.',
+      message: 'કૃપા કરીને ટૂંકો સંદેશ ઉમેરો.',
+    },
+    note: 'આ ફોર્મ સ્પામ ટ્રેપથી સુરક્ષિત છે. તમે અમને સીધો ઇમેઇલ અથવા કૉલ પણ કરી શકો છો.',
+  },
+  services: {
+    seoTitle: 'બાંધકામ સેવાઓ',
+    seoDescription:
+      'રાજકોટમાં રહેણાંક બાંધકામ, વ્યાવસાયિક નિર્માણ, નવીનીકરણ, ઇન્ટિરિયર્સ, પ્રોજેક્ટ મેનેજમેન્ટ અને જાળવણી.',
+    eyebrow: 'અમે શું કરીએ છીએ',
+    title: 'બાંધકામના દરેક તબક્કા માટે એક જવાબદાર ભાગીદાર.',
+    lead: 'યોજનાબદ્ધતા, લોકો અને સાઇટ અમલીકરણને એક સ્પષ્ટ કરાર હેઠળ લાવીએ છીએ—જેથી તમારો પ્રોજેક્ટ અચંબા વિના આગળ વધે.',
+    view: 'સેવા જુઓ',
+    ctaTitle: 'કઈ સેવા યોગ્ય છે તેની ખાતરી નથી?',
+    ctaLead: 'તમે શું આયોજન કરી રહ્યા છો તે જણાવો અને અમે સાઇટ પર જવા માટે યોગ્ય માર્ગ સૂચવશું.',
+    workLink: 'અમારું તાજેતરનું કામ જુઓ',
+    detailEyebrow: 'સેવા',
+    allServices: 'બધી સેવાઓ',
+    notFound: 'સેવા મળી નથી.',
+    backToServices: 'સેવાઓ પર પાછા જાઓ',
+    includedTitle: 'શું શામેલ છે',
+    inclusions: [
+      'કામ શરૂ થાય તે પહેલાં નિશ્ચિત, વિગતવાર કાર્યક્ષેત્ર',
+      'સમર્પિત પ્રોજેક્ટ લીડ અને સાપ્તાહિક અપડેટ્સ',
+      'દરેક માઇલસ્ટોન પર સલામતી અને ગુણવત્તાની તપાસ',
+    ],
+    detailCtaTitle: 'આગળનું પગલું સ્પષ્ટ કરીએ.',
+    detailCtaLead: 'ટૂંકી માહિતીથી શરૂઆત કરો. અમે યોગ્ય પ્રશ્નો અને સાઇટ વિઝિટ યોજના સાથે સંપર્ક કરીશું.',
+    photoFallback: 'પ્રોજેક્ટ ફોટો',
+  },
+  about: {
+    seoTitle: 'અમારા વિશે',
+    seoDescription:
+      'રાજકોટ અને સૌરાષ્ટ્રમાં વિશ્વસનીય, સલામતી-પ્રથમ બાંધકામ માટે Aashray Buildcon ના અભિગમ વિશે જાણો.',
+    eyebrow: 'Aashray Buildcon વિશે',
+    title: 'દૂરંદેશી વિચાર ધરાવતા સ્થાનિક બિલ્ડર્સ.',
+    heroLead:
+      '{since} થી, અમે {region} માં પરિવારો અને વ્યવસાયોને મહત્ત્વાકાંક્ષી યોજનાઓને વિશ્વસનીય જગ્યાઓમાં બદલવામાં મદદ કરી છે.',
+    approachEyebrow: 'અમારો અભિગમ',
+    approachTitle: 'અનુમાનથી નહીં, વિશ્વાસથી બાંધો.',
+    approachLead:
+      'સફળ પ્રોજેક્ટ ફક્ત તૈયાર માળખું નથી. તે એવી પ્રક્રિયા છે જેને ગ્રાહકો સમજી, વિશ્વાસ કરી અને ગર્વથી ભલામણ કરી શકે.',
+    story:
+      'પ્રોજેક્ટને આગળ ધપાવતા લોકો, સામગ્રી, મંજૂરીઓ અને સાઇટ કામનું અમે સંકલન કરીએ છીએ. તમને પ્રથમ વાતચીતથી હેન્ડઓવર સુધી એક જવાબદાર ટીમ, નિયમિત અપડેટ્સ અને સ્પષ્ટ સંચાર મળે છે.',
+    photo: 'Aashray Buildcon ટીમ',
+    valuesEyebrow: 'અમને શું માર્ગદર્શન આપે છે',
+    valuesTitle: 'સાઇટ પર દેખાતા ધોરણો.',
+    values: [
+      {
+        title: 'સ્પષ્ટ પ્રતિબદ્ધતા',
+        body: 'વિગતવાર કાર્યક્ષેત્ર, વાસ્તવિક સમયપત્રક અને પરિસ્થિતિ બદલાય ત્યારે વહેલા જવાબ.',
+      },
+      { title: 'સાઇટની કાળજી', body: 'સલામતી-પ્રથમ ટીમો જે સાઇટ વ્યવસ્થિત રાખે અને આસપાસના લોકોનો આદર કરે.' },
+      {
+        title: 'ટકી રહે તેવી ગુણવત્તા',
+        body: 'વિચારપૂર્વકની સામગ્રી, ચકાસાયેલ કારીગરી અને સરળ હેન્ડઓવરનું ધોરણ.',
+      },
+    ],
+    assurance: 'લાઇસન્સવાળી ટીમો, પ્રોજેક્ટ દસ્તાવેજીકરણ અને સાઇટ-સ્તરની સલામતી તપાસ દરેક કાર્યનો ભાગ છે.',
+    ctaTitle: 'કંઈક ટકી રહે તેવું બનાવીએ.',
+    ctaLead: 'તમારી જરૂરિયાત સાથે આવો અને અમે સ્પષ્ટતા સાથે આગળ વધવામાં મદદ કરીશું.',
+  },
+}
+
+export const translations = { en, gu }
+export type Language = keyof typeof translations
+export type Copy = (typeof translations)[Language]
+
+/** English fallback for code that is rendered outside the language provider. */
+export const copy = translations.en

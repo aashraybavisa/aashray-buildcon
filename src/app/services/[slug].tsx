@@ -9,13 +9,8 @@ import { SectionHeading } from '@/components/section-heading'
 import { Seo } from '@/components/seo'
 import { SiteFooter } from '@/components/site-footer'
 import { services } from '@/data/services'
+import { useLanguage } from '@/i18n/language-provider'
 import { useTheme } from '@/theme/theme'
-
-const inclusions = [
-  'Fixed, itemised scope before work begins',
-  'A dedicated project lead and weekly updates',
-  'Safety and quality checks at every milestone',
-]
 
 export function generateStaticParams() {
   return services.map(({ slug }) => ({ slug }))
@@ -23,6 +18,7 @@ export function generateStaticParams() {
 
 export default function ServiceDetailScreen() {
   const theme = useTheme()
+  const { copy, language } = useLanguage()
   const { slug } = useLocalSearchParams<{ slug: string }>()
   const service = services.find((item) => item.slug === slug)
 
@@ -30,16 +26,19 @@ export default function ServiceDetailScreen() {
     return (
       <View style={[styles.notFound, { backgroundColor: theme.colors.surfacePage }]}>
         <Text style={{ color: theme.colors.textStrong, fontFamily: theme.fonts.displayBold, fontSize: 26 }}>
-          Service not found.
+          {copy.services.notFound}
         </Text>
-        <Button onPress={() => router.replace('/services' as Href)}>Back to services</Button>
+        <Button onPress={() => router.replace('/services' as Href)}>{copy.services.backToServices}</Button>
       </View>
     )
   }
 
   return (
     <>
-      <Seo title={service.title} description={service.excerpt} />
+      <Seo
+        title={language === 'gu' ? service.titleGu : service.title}
+        description={language === 'gu' ? service.excerptGu : service.excerpt}
+      />
       <ScrollView contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}>
         <View style={styles.container}>
           <Button
@@ -48,19 +47,26 @@ export default function ServiceDetailScreen() {
             onPress={() => router.back()}
             iconLeft={<ArrowLeft color={theme.colors.accentPress} size={17} />}
           >
-            All services
+            {copy.services.allServices}
           </Button>
           <View style={styles.hero}>
             <View style={styles.copy}>
-              <SectionHeading eyebrow="Service" title={service.title} lead={service.body} />
+              <SectionHeading
+                eyebrow={copy.services.detailEyebrow}
+                title={language === 'gu' ? service.titleGu : service.title}
+                lead={language === 'gu' ? service.bodyGu : service.body}
+              />
               <Button
                 onPress={() => router.push('/quote' as Href)}
                 iconRight={<ArrowRight color={theme.colors.textOnAccent} size={17} />}
               >
-                Request a Quote
+                {copy.common.quote}
               </Button>
             </View>
-            <PhotoPlaceholder label={service.title} style={styles.photo} />
+            <PhotoPlaceholder
+              label={language === 'gu' ? service.titleGu : service.title}
+              style={styles.photo}
+            />
           </View>
           <View
             style={[
@@ -71,9 +77,9 @@ export default function ServiceDetailScreen() {
             <Text
               style={{ color: theme.colors.textStrong, fontFamily: theme.fonts.displayBold, fontSize: 22 }}
             >
-              What’s included
+              {copy.services.includedTitle}
             </Text>
-            {inclusions.map((inclusion) => (
+            {copy.services.inclusions.map((inclusion) => (
               <View key={inclusion} style={styles.inclusion}>
                 <Check color={theme.colors.success} size={18} />
                 <Text
@@ -91,8 +97,8 @@ export default function ServiceDetailScreen() {
             ))}
           </View>
           <CTABand
-            title="Let’s make the next step clear."
-            lead="Start with a short brief. We’ll follow up with the right questions and a site-visit plan."
+            title={copy.services.detailCtaTitle}
+            lead={copy.services.detailCtaLead}
             onAction={() => router.push('/quote' as Href)}
           />
         </View>

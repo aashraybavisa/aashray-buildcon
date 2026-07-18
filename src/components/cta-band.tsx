@@ -2,11 +2,13 @@ import { ArrowRight } from 'lucide-react-native'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { Button } from '@/components/button'
+import { useLanguage } from '@/i18n/language-provider'
 import { useTheme } from '@/theme/theme'
 
 type CTABandProps = { title: string; lead?: string; actionLabel?: string; onAction?: () => void }
-export function CTABand({ title, lead, actionLabel = 'Request a Quote', onAction }: CTABandProps) {
+export function CTABand({ title, lead, actionLabel, onAction }: CTABandProps) {
   const theme = useTheme()
+  const { copy } = useLanguage()
   return (
     <View style={[styles.band, { backgroundColor: theme.colors.bandBg }]}>
       <View style={[styles.orb, { backgroundColor: theme.colors.accent }]} />
@@ -36,7 +38,7 @@ export function CTABand({ title, lead, actionLabel = 'Request a Quote', onAction
         )}
       </View>
       <Button onPress={onAction} iconRight={<ArrowRight color={theme.colors.textOnAccent} size={18} />}>
-        {actionLabel}
+        {actionLabel ?? copy.common.quote}
       </Button>
     </View>
   )

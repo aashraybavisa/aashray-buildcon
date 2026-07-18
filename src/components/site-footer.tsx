@@ -3,12 +3,13 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { Logo } from '@/components/logo'
 import { company } from '@/data/company'
-import { copy } from '@/data/content'
+import { useLanguage } from '@/i18n/language-provider'
 import { useTheme } from '@/theme/theme'
 
 /** Footer content is kept as a component so every future marketing screen shares one source. */
 export function SiteFooter() {
   const theme = useTheme()
+  const { copy } = useLanguage()
   return (
     <View style={[styles.footer, { backgroundColor: theme.colors.bandDeep }]}>
       <View style={styles.content}>

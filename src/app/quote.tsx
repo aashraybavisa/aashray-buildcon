@@ -8,12 +8,13 @@ import { SectionHeading } from '@/components/section-heading'
 import { Seo } from '@/components/seo'
 import { SiteFooter } from '@/components/site-footer'
 import { company } from '@/data/company'
-import { copy } from '@/data/content'
+import { useLanguage } from '@/i18n/language-provider'
 import { LeadDeliveryNotConfiguredError, sendLead } from '@/lib/lead'
 import { useTheme } from '@/theme/theme'
 
 export default function QuoteScreen() {
   const theme = useTheme()
+  const { copy } = useLanguage()
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)

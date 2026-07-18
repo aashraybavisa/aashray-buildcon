@@ -1,21 +1,17 @@
 import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native'
 
 import { useTheme } from '@/theme/theme'
-import { copy } from '@/data/content'
+import { useLanguage } from '@/i18n/language-provider'
 
 /** A deliberate stand-in for project photography until approved photography is supplied. */
-export function PhotoPlaceholder({
-  label = copy.services.photoFallback,
-  style,
-}: {
-  label?: string
-  style?: StyleProp<ViewStyle>
-}) {
+export function PhotoPlaceholder({ label, style }: { label?: string; style?: StyleProp<ViewStyle> }) {
   const theme = useTheme()
+  const { copy } = useLanguage()
+  const displayLabel = label ?? copy.services.photoFallback
   return (
     <View
       accessibilityRole="image"
-      accessibilityLabel={label}
+      accessibilityLabel={displayLabel}
       style={[styles.root, { backgroundColor: theme.colors.bandBg }, style]}
     >
       <View style={[styles.line, { backgroundColor: theme.colors.bandBorder }]} />
@@ -27,7 +23,7 @@ export function PhotoPlaceholder({
           letterSpacing: 1.3,
         }}
       >
-        {label.toUpperCase()}
+        {displayLabel.toUpperCase()}
       </Text>
     </View>
   )

@@ -15,7 +15,7 @@ export function Logo({ compact = false, inverse = false, style }: LogoProps) {
   const wordmarkColor = inverse ? theme.colors.bandText : theme.colors.textStrong
 
   return (
-    <View accessibilityRole="image" accessibilityLabel="Aashray Buildcon" style={[styles.root, style]}>
+    <View accessibilityRole="image" accessibilityLabel={company.name} style={[styles.root, style]}>
       <Image source={require('@/assets/brand/logo-tile.svg')} style={styles.mark} />
       {!compact && (
         <View>

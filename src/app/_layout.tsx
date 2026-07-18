@@ -14,6 +14,7 @@ import { StyleSheet, useColorScheme, View } from 'react-native'
 import { AnimatedSplashOverlay } from '@/components/animated-icon'
 import { SiteHeader } from '@/components/site-header'
 import { MobileBottomNav } from '@/components/mobile-bottom-nav'
+import { LanguageProvider } from '@/i18n/language-provider'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -38,18 +39,20 @@ export default function TabLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <View style={styles.root}>
-        <Stack screenOptions={{ header: () => <SiteHeader />, headerShadowVisible: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="about" />
-          <Stack.Screen name="contact" />
-          <Stack.Screen name="projects" />
-          <Stack.Screen name="quote" />
-          <Stack.Screen name="services" />
-        </Stack>
-        <MobileBottomNav />
-      </View>
+      <LanguageProvider>
+        <AnimatedSplashOverlay />
+        <View style={styles.root}>
+          <Stack screenOptions={{ header: () => <SiteHeader />, headerShadowVisible: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="about" />
+            <Stack.Screen name="contact" />
+            <Stack.Screen name="projects" />
+            <Stack.Screen name="quote" />
+            <Stack.Screen name="services" />
+          </Stack>
+          <MobileBottomNav />
+        </View>
+      </LanguageProvider>
     </ThemeProvider>
   )
 }

@@ -9,46 +9,32 @@ import { Seo } from '@/components/seo'
 import { SiteFooter } from '@/components/site-footer'
 import { StatCard } from '@/components/stat-card'
 import { company, stats } from '@/data/company'
+import { useLanguage } from '@/i18n/language-provider'
 import { useTheme } from '@/theme/theme'
-
-const values = [
-  {
-    title: 'Clear commitments',
-    body: 'Detailed scopes, real schedules, and early answers when conditions change.',
-  },
-  {
-    title: 'Care for the site',
-    body: 'Safety-first teams who keep the site organised and respect the people around it.',
-  },
-  {
-    title: 'Quality that lasts',
-    body: 'Thoughtful materials, verified workmanship, and a snag-free handover standard.',
-  },
-]
 
 export default function AboutScreen() {
   const theme = useTheme()
+  const { copy, language } = useLanguage()
   return (
     <>
-      <Seo
-        title="About"
-        description="Learn about Aashray Buildcon’s approach to dependable, safety-first construction in Rajkot and Saurashtra."
-      />
+      <Seo title={copy.about.seoTitle} description={copy.about.seoDescription} />
       <ScrollView contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}>
         <View style={[styles.hero, { backgroundColor: theme.colors.bandBg }]}>
           <View style={styles.container}>
             <SectionHeading
               invert
-              eyebrow="About Aashray Buildcon"
-              title="Local builders with a long view."
-              lead={`Since ${company.since}, we’ve helped families and businesses across ${company.region} turn ambitious plans into dependable places.`}
+              eyebrow={copy.about.eyebrow}
+              title={copy.about.title}
+              lead={copy.about.heroLead
+                .replace('{since}', String(company.since))
+                .replace('{region}', company.region)}
             />
           </View>
         </View>
         <View style={[styles.stats, { backgroundColor: theme.colors.bandDeep }]}>
           <View style={[styles.container, styles.statsGrid]}>
-            {stats.map((stat) => (
-              <StatCard invert key={stat.label} {...stat} />
+            {stats.map(({ labelGu, ...stat }) => (
+              <StatCard invert key={stat.label} {...stat} label={language === 'gu' ? labelGu : stat.label} />
             ))}
           </View>
         </View>
@@ -56,9 +42,9 @@ export default function AboutScreen() {
           <View style={styles.story}>
             <View style={styles.storyCopy}>
               <SectionHeading
-                eyebrow="Our approach"
-                title="Build with confidence, not guesswork."
-                lead="A successful project is more than a finished structure. It is a process clients can understand, trust, and feel proud to recommend."
+                eyebrow={copy.about.approachEyebrow}
+                title={copy.about.approachTitle}
+                lead={copy.about.approachLead}
               />
               <Text
                 style={{
@@ -68,19 +54,17 @@ export default function AboutScreen() {
                   lineHeight: 25,
                 }}
               >
-                We coordinate the people, materials, approvals, and site work that make a project move. You
-                get one accountable team, regular progress updates, and a clear line of communication from the
-                first conversation to handover.
+                {copy.about.story}
               </Text>
             </View>
-            <PhotoPlaceholder label="Aashray Buildcon team" style={styles.photo} />
+            <PhotoPlaceholder label={copy.about.photo} style={styles.photo} />
           </View>
         </View>
         <View style={[styles.raised, { backgroundColor: theme.colors.surfaceRaised }]}>
           <View style={[styles.section, styles.container]}>
-            <SectionHeading eyebrow="What guides us" title="Standards you can see on site." />
+            <SectionHeading eyebrow={copy.about.valuesEyebrow} title={copy.about.valuesTitle} />
             <View style={styles.values}>
-              {values.map((value) => (
+              {copy.about.values.map((value) => (
                 <View
                   key={value.title}
                   style={[
@@ -125,13 +109,12 @@ export default function AboutScreen() {
                 lineHeight: 24,
               }}
             >
-              Licensed teams, project documentation, and site-level safety checks are part of every
-              engagement.
+              {copy.about.assurance}
             </Text>
           </View>
           <CTABand
-            title="Let’s build something that lasts."
-            lead="Bring us your brief and we’ll help you move forward with clarity."
+            title={copy.about.ctaTitle}
+            lead={copy.about.ctaLead}
             onAction={() => router.push('/quote' as Href)}
           />
         </View>

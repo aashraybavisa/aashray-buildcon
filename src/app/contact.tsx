@@ -8,11 +8,13 @@ import { SectionHeading } from '@/components/section-heading'
 import { Seo } from '@/components/seo'
 import { SiteFooter } from '@/components/site-footer'
 import { company } from '@/data/company'
+import { useLanguage } from '@/i18n/language-provider'
 import { LeadDeliveryNotConfiguredError, sendLead } from '@/lib/lead'
 import { useTheme } from '@/theme/theme'
 
 export default function ContactScreen() {
   const theme = useTheme()
+  const { copy } = useLanguage()
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
@@ -23,9 +25,9 @@ export default function ContactScreen() {
     setForm((current) => ({ ...current, [field]: value }))
   const submit = async () => {
     const nextErrors: Record<string, string> = {}
-    if (!form.name.trim()) nextErrors.name = 'Please enter your name.'
-    if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = 'Enter a valid email address.'
-    if (!form.message.trim()) nextErrors.message = 'Please add a short message.'
+    if (!form.name.trim()) nextErrors.name = copy.contact.errors.name
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = copy.contact.errors.email
+    if (!form.message.trim()) nextErrors.message = copy.contact.errors.message
     setErrors(nextErrors)
     setSubmitError(null)
     if (Object.keys(nextErrors).length) return
@@ -46,8 +48,8 @@ export default function ContactScreen() {
     } catch (error) {
       setSubmitError(
         error instanceof LeadDeliveryNotConfiguredError
-          ? 'Lead delivery is not configured yet. Please email or call us directly.'
-          : 'We could not send your message. Please try again or contact us directly.',
+          ? copy.common.configuredContactError
+          : copy.common.contactDeliveryError,
       )
     } finally {
       setSending(false)
@@ -56,16 +58,13 @@ export default function ContactScreen() {
 
   return (
     <>
-      <Seo
-        title="Contact"
-        description="Contact Aashray Buildcon in Rajkot for construction project enquiries, site visits, and general questions."
-      />
+      <Seo title={copy.contact.seoTitle} description={copy.contact.seoDescription} />
       <ScrollView contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}>
         <View style={styles.container}>
           <SectionHeading
-            eyebrow="Contact"
-            title="Bring us your next build."
-            lead="For project enquiries, visits, and general questions, get in touch with our Rajkot team."
+            eyebrow={copy.contact.eyebrow}
+            title={copy.contact.title}
+            lead={copy.contact.lead}
           />
           <View style={styles.layout}>
             <View style={styles.details}>
@@ -104,34 +103,34 @@ export default function ContactScreen() {
                 <Text
                   style={{ color: theme.colors.success, fontFamily: theme.fonts.displayBold, fontSize: 21 }}
                 >
-                  Thanks. We’ll be in touch shortly.
+                  {copy.common.thankYouContact}
                 </Text>
               ) : (
                 <>
                   <FormField
-                    label="Your name"
+                    label={copy.contact.fields.name}
                     value={form.name}
                     onChangeText={update('name')}
-                    placeholder="Full name"
+                    placeholder={copy.contact.placeholders.name}
                     required
                     autoComplete="name"
                     error={errors.name}
                   />
                   <FormField
-                    label="Email"
+                    label={copy.contact.fields.email}
                     value={form.email}
                     onChangeText={update('email')}
-                    placeholder="you@example.com"
+                    placeholder={copy.contact.placeholders.email}
                     required
                     autoComplete="email"
                     keyboardType="email-address"
                     error={errors.email}
                   />
                   <FormField
-                    label="How can we help?"
+                    label={copy.contact.fields.message}
                     value={form.message}
                     onChangeText={update('message')}
-                    placeholder="Tell us a little about your enquiry."
+                    placeholder={copy.contact.placeholders.message}
                     required
                     multiline
                     error={errors.message}
@@ -149,7 +148,7 @@ export default function ContactScreen() {
                     </Text>
                   )}
                   <Button block disabled={sending} onPress={submit}>
-                    {sending ? 'Sending…' : 'Send message'}
+                    {sending ? copy.common.sending : copy.common.sendMessage}
                   </Button>
                   <Text
                     style={{
@@ -159,7 +158,7 @@ export default function ContactScreen() {
                       lineHeight: 18,
                     }}
                   >
-                    We protect this form with a spam trap. You can also email or call us directly.
+                    {copy.contact.note}
                   </Text>
                 </>
               )}
