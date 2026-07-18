@@ -1,5 +1,5 @@
-import { CheckCircle2, ShieldCheck } from 'lucide-react-native'
 import { router, type Href } from 'expo-router'
+import { CheckCircle2, ShieldCheck } from 'lucide-react-native'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import { CTABand } from '@/components/cta-band'
@@ -19,10 +19,9 @@ export default function AboutScreen() {
     <>
       <Seo title={copy.about.seoTitle} description={copy.about.seoDescription} />
       <ScrollView contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}>
-        <View style={[styles.hero, { backgroundColor: theme.colors.bandBg }]}>
+        <View style={[styles.hero, { backgroundColor: theme.colors.surfacePage }]}>
           <View style={styles.container}>
             <SectionHeading
-              invert
               eyebrow={copy.about.eyebrow}
               title={copy.about.title}
               lead={copy.about.heroLead
@@ -126,7 +125,7 @@ export default function AboutScreen() {
 
 const styles = StyleSheet.create({
   container: { alignSelf: 'center', maxWidth: 1200, paddingHorizontal: 24, width: '100%' },
-  hero: { paddingVertical: 80 },
+  hero: { paddingVertical: 72 },
   stats: { paddingVertical: 34 },
   statsGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 28, justifyContent: 'space-between' },
   section: { gap: 36, paddingVertical: 72 },

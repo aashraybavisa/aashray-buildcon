@@ -26,16 +26,12 @@ export default function ServicesScreen() {
         contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={[styles.hero, { backgroundColor: theme.colors.surfaceRaised }]}>
-          <View style={styles.container}>
-            <SectionHeading
-              eyebrow={copy.services.eyebrow}
-              title={copy.services.title}
-              lead={copy.services.lead}
-            />
-          </View>
-        </View>
-        <View style={[styles.section, styles.container]}>
+        <View style={[styles.pageContent, styles.container]}>
+          <SectionHeading
+            eyebrow={copy.services.eyebrow}
+            title={copy.services.title}
+            lead={copy.services.lead}
+          />
           <View style={styles.grid}>
             {services.map(({ titleGu, excerptGu, bodyGu, ...service }) => (
               <View key={service.slug} style={{ padding: 6, width: `${100 / columns}%` }}>
@@ -72,7 +68,7 @@ export default function ServicesScreen() {
 
 const styles = StyleSheet.create({
   container: { alignSelf: 'center', maxWidth: 1200, paddingHorizontal: 24, width: '100%' },
-  hero: { paddingVertical: 72 },
+  pageContent: { gap: 32, paddingVertical: 72 },
   section: { gap: 30, paddingVertical: 72 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -6 },
 })
