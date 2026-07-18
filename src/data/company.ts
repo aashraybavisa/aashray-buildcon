@@ -7,9 +7,9 @@ export const company = {
   tagline: 'Construction & Contracting',
   addressLine: '150 Ft Ring Road, Rajkot',
   addressFull: '150 Ft Ring Road, Rajkot, Gujarat 360005',
-  phone: '+91 98240 00000',
-  phoneHref: 'tel:+919824000000',
-  email: 'hello@aashraybuildcon.in',
+  phone: '+91 99799 50804',
+  phoneHref: 'tel:+919979950804',
+  email: 'gmbavisa29@gmail.com',
   gst: '24XXXXXXXXXXX',
   hours: 'Mon–Sat · 9:30am – 7:00pm',
   social: {
@@ -21,7 +21,7 @@ export const company = {
 
 export const stats = [
   { value: '15', suffix: '+', label: 'Years building', labelGu: 'વર્ષોનો અનુભવ' },
-  { value: '240', suffix: '+', label: 'Projects delivered', labelGu: 'પૂર્ણ પ્રોજેક્ટ્સ' },
+  { value: '100', suffix: '+', label: 'Projects delivered', labelGu: 'પૂર્ણ પ્રોજેક્ટ્સ' },
   { value: '1.8M', suffix: ' sq-ft', label: 'Built area', labelGu: 'બાંધકામ વિસ્તાર' },
   { value: '98', suffix: '%', label: 'On-time handover', labelGu: 'સમયસર હેન્ડઓવર' },
 ] as const
