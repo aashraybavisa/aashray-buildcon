@@ -13,10 +13,14 @@ type LogoProps = {
 export function Logo({ compact = false, inverse = false, style }: LogoProps) {
   const theme = useTheme()
   const wordmarkColor = inverse ? theme.colors.bandText : theme.colors.textStrong
+  const markSource =
+    inverse || theme.scheme === 'dark'
+      ? require('@/assets/brand/logo-tile.svg')
+      : require('@/assets/brand/logo-tile-amber.svg')
 
   return (
     <View accessibilityRole="image" accessibilityLabel={company.name} style={[styles.root, style]}>
-      <Image source={require('@/assets/brand/logo-tile.svg')} style={styles.mark} />
+      <Image source={markSource} style={styles.mark} />
       {!compact && (
         <View>
           <Text style={[styles.name, { color: wordmarkColor, fontFamily: theme.fonts.displayBold }]}>
