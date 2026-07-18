@@ -8,6 +8,7 @@ import { SectionHeading } from '@/components/section-heading'
 import { Seo } from '@/components/seo'
 import { SiteFooter } from '@/components/site-footer'
 import { company } from '@/data/company'
+import { copy } from '@/data/content'
 import { LeadDeliveryNotConfiguredError, sendLead } from '@/lib/lead'
 import { useTheme } from '@/theme/theme'
 
@@ -23,9 +24,9 @@ export default function QuoteScreen() {
     setForm((current) => ({ ...current, [key]: value }))
   const submit = async () => {
     const nextErrors: Record<string, string> = {}
-    if (!form.name.trim()) nextErrors.name = 'Please enter your name.'
-    if (form.phone.replace(/\D/g, '').length < 10) nextErrors.phone = 'Enter a valid phone number.'
-    if (!form.project.trim()) nextErrors.project = 'Tell us what you are planning.'
+    if (!form.name.trim()) nextErrors.name = copy.quote.errors.name
+    if (form.phone.replace(/\D/g, '').length < 10) nextErrors.phone = copy.quote.errors.phone
+    if (!form.project.trim()) nextErrors.project = copy.quote.errors.project
     setErrors(nextErrors)
     setSubmitError(null)
     if (Object.keys(nextErrors).length) return
@@ -47,8 +48,8 @@ export default function QuoteScreen() {
     } catch (error) {
       setSubmitError(
         error instanceof LeadDeliveryNotConfiguredError
-          ? 'Lead delivery is not configured yet. Please call us directly.'
-          : 'We could not send your request. Please try again or call us directly.',
+          ? copy.common.configuredError
+          : copy.common.deliveryError,
       )
     } finally {
       setSending(false)
@@ -57,27 +58,20 @@ export default function QuoteScreen() {
 
   return (
     <>
-      <Seo
-        title="Request a Quote"
-        description="Tell Aashray Buildcon about your construction project and request a clear, itemised quote."
-      />
+      <Seo title={copy.quote.seoTitle} description={copy.quote.seoDescription} />
       <ScrollView
         contentContainerStyle={{ paddingBottom: 62 }}
         style={{ backgroundColor: theme.colors.surfacePage }}
       >
         <View style={styles.container}>
-          <SectionHeading
-            eyebrow="Start a conversation"
-            title="Request a clear, itemised quote."
-            lead="Share the essentials and our team will arrange a site visit within one working day."
-          />
+          <SectionHeading eyebrow={copy.quote.eyebrow} title={copy.quote.title} lead={copy.quote.lead} />
           {sent ? (
             <View style={[styles.success, { backgroundColor: theme.colors.successSoft }]}>
               <CheckCircle2 color={theme.colors.success} size={32} />
               <Text
                 style={{ color: theme.colors.textStrong, fontFamily: theme.fonts.displayBold, fontSize: 22 }}
               >
-                Thanks — we’ve got your request.
+                {copy.common.thankYouQuote}
               </Text>
               <Text
                 style={{
@@ -87,7 +81,7 @@ export default function QuoteScreen() {
                   lineHeight: 24,
                 }}
               >
-                We’ll call you at the number provided to discuss your project.
+                {copy.common.thankYouQuoteLead}
               </Text>
             </View>
           ) : (
@@ -98,37 +92,37 @@ export default function QuoteScreen() {
               ]}
             >
               <FormField
-                label="Your name"
+                label={copy.quote.fields.name}
                 value={form.name}
                 onChangeText={update('name')}
-                placeholder="Full name"
+                placeholder={copy.quote.placeholders.name}
                 required
                 autoComplete="name"
                 error={errors.name}
               />
               <FormField
-                label="Phone number"
+                label={copy.quote.fields.phone}
                 value={form.phone}
                 onChangeText={update('phone')}
-                placeholder="+91"
+                placeholder={copy.quote.placeholders.phone}
                 required
                 keyboardType="phone-pad"
                 autoComplete="tel"
                 error={errors.phone}
               />
               <FormField
-                label="What are you planning?"
+                label={copy.quote.fields.project}
                 value={form.project}
                 onChangeText={update('project')}
-                placeholder="Villa, office, renovation…"
+                placeholder={copy.quote.placeholders.project}
                 required
                 error={errors.project}
               />
               <FormField
-                label="Project details"
+                label={copy.quote.fields.details}
                 value={form.details}
                 onChangeText={update('details')}
-                placeholder="Location, approximate area, timeline, and anything else that will help us prepare."
+                placeholder={copy.quote.placeholders.details}
                 multiline
               />
               <TextInput
@@ -144,7 +138,7 @@ export default function QuoteScreen() {
                 </Text>
               )}
               <Button block disabled={sending} onPress={submit}>
-                {sending ? 'Sending…' : 'Send request'}
+                {sending ? copy.common.sending : copy.common.sendRequest}
               </Button>
               <Text
                 style={{
@@ -154,7 +148,7 @@ export default function QuoteScreen() {
                   lineHeight: 18,
                 }}
               >
-                Prefer to talk now? Call {company.phone}.
+                {copy.quote.callNote} {company.phone}.
               </Text>
             </View>
           )}

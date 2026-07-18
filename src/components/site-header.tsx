@@ -8,12 +8,13 @@ import { Logo } from '@/components/logo'
 import { useResponsive } from '@/hooks/use-responsive'
 import { useTheme } from '@/theme/theme'
 import { company } from '@/data/company'
+import { copy } from '@/data/content'
 
 const navigation = [
-  { label: 'Services', path: '/services' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'About', path: '/about' },
-  { label: 'Contact', path: '/contact' },
+  { label: copy.navigation.services, path: '/services' },
+  { label: copy.navigation.projects, path: '/projects' },
+  { label: copy.navigation.about, path: '/about' },
+  { label: copy.navigation.contact, path: '/contact' },
 ] as const
 
 /** Shared route header for marketing routes. */
@@ -35,7 +36,7 @@ export function SiteHeader() {
       <View style={styles.content}>
         <Pressable
           accessibilityRole="link"
-          accessibilityLabel="Aashray Buildcon home"
+          accessibilityLabel={copy.navigation.homeLink}
           onPress={() => navigate('/')}
         >
           <Logo />
@@ -43,7 +44,7 @@ export function SiteHeader() {
         {isNarrow ? (
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel="Open menu"
+            accessibilityLabel={copy.navigation.openMenu}
             onPress={() => setMenuOpen((open) => !open)}
             style={styles.menu}
           >
@@ -73,10 +74,10 @@ export function SiteHeader() {
               iconLeft={<Phone color={theme.colors.accentPress} size={15} />}
               onPress={() => Linking.openURL(company.phoneHref)}
             >
-              Call Us
+              {copy.common.callUs}
             </Button>
             <Button size="sm" onPress={() => navigate('/quote')}>
-              Request a Quote
+              {copy.common.quote}
             </Button>
           </View>
         )}
@@ -88,28 +89,30 @@ export function SiteHeader() {
             { backgroundColor: theme.colors.surfacePage, borderTopColor: theme.colors.border },
           ]}
         >
-          {[{ label: 'Home', path: '/' }, ...navigation, { label: 'Request a Quote', path: '/quote' }].map(
-            ({ label, path }) => {
-              return (
-                <Pressable
-                  accessibilityRole="link"
-                  key={label}
-                  onPress={() => navigate(path)}
-                  style={styles.mobileLink}
+          {[
+            { label: copy.navigation.home, path: '/' },
+            ...navigation,
+            { label: copy.common.quote, path: '/quote' },
+          ].map(({ label, path }) => {
+            return (
+              <Pressable
+                accessibilityRole="link"
+                key={label}
+                onPress={() => navigate(path)}
+                style={styles.mobileLink}
+              >
+                <Text
+                  style={{
+                    color: theme.colors.textStrong,
+                    fontFamily: theme.fonts.displaySemibold,
+                    fontSize: 17,
+                  }}
                 >
-                  <Text
-                    style={{
-                      color: theme.colors.textStrong,
-                      fontFamily: theme.fonts.displaySemibold,
-                      fontSize: 17,
-                    }}
-                  >
-                    {label}
-                  </Text>
-                </Pressable>
-              )
-            },
-          )}
+                  {label}
+                </Text>
+              </Pressable>
+            )
+          })}
         </View>
       )}
     </View>

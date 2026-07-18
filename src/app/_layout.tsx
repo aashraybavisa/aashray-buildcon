@@ -47,7 +47,6 @@ export default function TabLayout() {
           <Stack.Screen name="projects" />
           <Stack.Screen name="quote" />
           <Stack.Screen name="services" />
-          <Stack.Screen name="explore" />
         </Stack>
         <MobileBottomNav />
       </View>

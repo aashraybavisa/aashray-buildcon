@@ -4,11 +4,12 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 import { useResponsive } from '@/hooks/use-responsive'
 import { useTheme } from '@/theme/theme'
+import { copy } from '@/data/content'
 
 const tabs = [
-  { label: 'Home', path: '/', Icon: Home },
-  { label: 'Work', path: '/projects', Icon: Building2 },
-  { label: 'Quote', path: '/quote', Icon: FileText },
+  { label: copy.navigation.home, path: '/', Icon: Home },
+  { label: copy.navigation.work, path: '/projects', Icon: Building2 },
+  { label: copy.common.quote, path: '/quote', Icon: FileText },
 ] as const
 
 /** Fixed app-style navigation for narrow screens; desktop uses the header CTAs instead. */

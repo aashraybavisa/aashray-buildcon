@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native'
 
 import { useTheme } from '@/theme/theme'
+import { copy } from '@/data/content'
 
 /** A deliberate stand-in for project photography until approved photography is supplied. */
 export function PhotoPlaceholder({
-  label = 'Project photo',
+  label = copy.services.photoFallback,
   style,
 }: {
   label?: string
