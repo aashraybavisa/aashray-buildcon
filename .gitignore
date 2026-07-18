@@ -41,3 +41,6 @@ example
 # generated native folders
 /ios
 /android
+
+# extracted design kit (source of truth is AashrayBuildconUI.zip)
+.design-kit/

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Aashray Buildcon mark">
+  <mask id="door">
+    <rect width="64" height="64" fill="#fff"></rect>
+    <rect x="27.5" y="40" width="9" height="10" rx="1.5" fill="#000"></rect>
+  </mask>
+  <path d="M32 12 L52 50 L41 50 L32 31 L23 50 L12 50 Z" fill="#F4A300" mask="url(#door)"></path>
+</svg>
