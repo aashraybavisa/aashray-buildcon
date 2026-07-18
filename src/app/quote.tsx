@@ -5,6 +5,7 @@ import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Button } from '@/components/button'
 import { FormField } from '@/components/form-field'
 import { SectionHeading } from '@/components/section-heading'
+import { Seo } from '@/components/seo'
 import { SiteFooter } from '@/components/site-footer'
 import { company } from '@/data/company'
 import { LeadDeliveryNotConfiguredError, sendLead } from '@/lib/lead'
@@ -55,106 +56,112 @@ export default function QuoteScreen() {
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={{ paddingBottom: 62 }}
-      style={{ backgroundColor: theme.colors.surfacePage }}
-    >
-      <View style={styles.container}>
-        <SectionHeading
-          eyebrow="Start a conversation"
-          title="Request a clear, itemised quote."
-          lead="Share the essentials and our team will arrange a site visit within one working day."
-        />
-        {sent ? (
-          <View style={[styles.success, { backgroundColor: theme.colors.successSoft }]}>
-            <CheckCircle2 color={theme.colors.success} size={32} />
-            <Text
-              style={{ color: theme.colors.textStrong, fontFamily: theme.fonts.displayBold, fontSize: 22 }}
-            >
-              Thanks — we’ve got your request.
-            </Text>
-            <Text
-              style={{
-                color: theme.colors.textBody,
-                fontFamily: theme.fonts.body,
-                fontSize: 16,
-                lineHeight: 24,
-              }}
-            >
-              We’ll call you at the number provided to discuss your project.
-            </Text>
-          </View>
-        ) : (
-          <View
-            style={[
-              styles.form,
-              { backgroundColor: theme.colors.surfaceRaised, borderColor: theme.colors.border },
-            ]}
-          >
-            <FormField
-              label="Your name"
-              value={form.name}
-              onChangeText={update('name')}
-              placeholder="Full name"
-              required
-              autoComplete="name"
-              error={errors.name}
-            />
-            <FormField
-              label="Phone number"
-              value={form.phone}
-              onChangeText={update('phone')}
-              placeholder="+91"
-              required
-              keyboardType="phone-pad"
-              autoComplete="tel"
-              error={errors.phone}
-            />
-            <FormField
-              label="What are you planning?"
-              value={form.project}
-              onChangeText={update('project')}
-              placeholder="Villa, office, renovation…"
-              required
-              error={errors.project}
-            />
-            <FormField
-              label="Project details"
-              value={form.details}
-              onChangeText={update('details')}
-              placeholder="Location, approximate area, timeline, and anything else that will help us prepare."
-              multiline
-            />
-            <TextInput
-              accessibilityElementsHidden
-              autoComplete="off"
-              onChangeText={setWebsite}
-              style={styles.honeypot}
-              value={website}
-            />
-            {submitError && (
-              <Text style={{ color: theme.colors.danger, fontFamily: theme.fonts.body, fontSize: 14 }}>
-                {submitError}
+    <>
+      <Seo
+        title="Request a Quote"
+        description="Tell Aashray Buildcon about your construction project and request a clear, itemised quote."
+      />
+      <ScrollView
+        contentContainerStyle={{ paddingBottom: 62 }}
+        style={{ backgroundColor: theme.colors.surfacePage }}
+      >
+        <View style={styles.container}>
+          <SectionHeading
+            eyebrow="Start a conversation"
+            title="Request a clear, itemised quote."
+            lead="Share the essentials and our team will arrange a site visit within one working day."
+          />
+          {sent ? (
+            <View style={[styles.success, { backgroundColor: theme.colors.successSoft }]}>
+              <CheckCircle2 color={theme.colors.success} size={32} />
+              <Text
+                style={{ color: theme.colors.textStrong, fontFamily: theme.fonts.displayBold, fontSize: 22 }}
+              >
+                Thanks — we’ve got your request.
               </Text>
-            )}
-            <Button block disabled={sending} onPress={submit}>
-              {sending ? 'Sending…' : 'Send request'}
-            </Button>
-            <Text
-              style={{
-                color: theme.colors.textMuted,
-                fontFamily: theme.fonts.body,
-                fontSize: 12,
-                lineHeight: 18,
-              }}
+              <Text
+                style={{
+                  color: theme.colors.textBody,
+                  fontFamily: theme.fonts.body,
+                  fontSize: 16,
+                  lineHeight: 24,
+                }}
+              >
+                We’ll call you at the number provided to discuss your project.
+              </Text>
+            </View>
+          ) : (
+            <View
+              style={[
+                styles.form,
+                { backgroundColor: theme.colors.surfaceRaised, borderColor: theme.colors.border },
+              ]}
             >
-              Prefer to talk now? Call {company.phone}.
-            </Text>
-          </View>
-        )}
-      </View>
-      <SiteFooter />
-    </ScrollView>
+              <FormField
+                label="Your name"
+                value={form.name}
+                onChangeText={update('name')}
+                placeholder="Full name"
+                required
+                autoComplete="name"
+                error={errors.name}
+              />
+              <FormField
+                label="Phone number"
+                value={form.phone}
+                onChangeText={update('phone')}
+                placeholder="+91"
+                required
+                keyboardType="phone-pad"
+                autoComplete="tel"
+                error={errors.phone}
+              />
+              <FormField
+                label="What are you planning?"
+                value={form.project}
+                onChangeText={update('project')}
+                placeholder="Villa, office, renovation…"
+                required
+                error={errors.project}
+              />
+              <FormField
+                label="Project details"
+                value={form.details}
+                onChangeText={update('details')}
+                placeholder="Location, approximate area, timeline, and anything else that will help us prepare."
+                multiline
+              />
+              <TextInput
+                accessibilityElementsHidden
+                autoComplete="off"
+                onChangeText={setWebsite}
+                style={styles.honeypot}
+                value={website}
+              />
+              {submitError && (
+                <Text style={{ color: theme.colors.danger, fontFamily: theme.fonts.body, fontSize: 14 }}>
+                  {submitError}
+                </Text>
+              )}
+              <Button block disabled={sending} onPress={submit}>
+                {sending ? 'Sending…' : 'Send request'}
+              </Button>
+              <Text
+                style={{
+                  color: theme.colors.textMuted,
+                  fontFamily: theme.fonts.body,
+                  fontSize: 12,
+                  lineHeight: 18,
+                }}
+              >
+                Prefer to talk now? Call {company.phone}.
+              </Text>
+            </View>
+          )}
+        </View>
+        <SiteFooter />
+      </ScrollView>
+    </>
   )
 }
 const styles = StyleSheet.create({

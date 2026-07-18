@@ -6,6 +6,7 @@ import { Button } from '@/components/button'
 import { CTABand } from '@/components/cta-band'
 import { PhotoPlaceholder } from '@/components/photo-placeholder'
 import { SectionHeading } from '@/components/section-heading'
+import { Seo } from '@/components/seo'
 import { SiteFooter } from '@/components/site-footer'
 import { services } from '@/data/services'
 import { useTheme } from '@/theme/theme'
@@ -37,62 +38,67 @@ export default function ServiceDetailScreen() {
   }
 
   return (
-    <ScrollView contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}>
-      <View style={styles.container}>
-        <Button
-          size="sm"
-          variant="ghost"
-          onPress={() => router.back()}
-          iconLeft={<ArrowLeft color={theme.colors.accentPress} size={17} />}
-        >
-          All services
-        </Button>
-        <View style={styles.hero}>
-          <View style={styles.copy}>
-            <SectionHeading eyebrow="Service" title={service.title} lead={service.body} />
-            <Button
-              onPress={() => router.push('/quote' as Href)}
-              iconRight={<ArrowRight color={theme.colors.textOnAccent} size={17} />}
-            >
-              Request a Quote
-            </Button>
-          </View>
-          <PhotoPlaceholder label={service.title} style={styles.photo} />
-        </View>
-        <View
-          style={[
-            styles.included,
-            { backgroundColor: theme.colors.surfaceRaised, borderColor: theme.colors.border },
-          ]}
-        >
-          <Text style={{ color: theme.colors.textStrong, fontFamily: theme.fonts.displayBold, fontSize: 22 }}>
-            What’s included
-          </Text>
-          {inclusions.map((inclusion) => (
-            <View key={inclusion} style={styles.inclusion}>
-              <Check color={theme.colors.success} size={18} />
-              <Text
-                style={{
-                  color: theme.colors.textBody,
-                  flex: 1,
-                  fontFamily: theme.fonts.body,
-                  fontSize: 16,
-                  lineHeight: 24,
-                }}
+    <>
+      <Seo title={service.title} description={service.excerpt} />
+      <ScrollView contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}>
+        <View style={styles.container}>
+          <Button
+            size="sm"
+            variant="ghost"
+            onPress={() => router.back()}
+            iconLeft={<ArrowLeft color={theme.colors.accentPress} size={17} />}
+          >
+            All services
+          </Button>
+          <View style={styles.hero}>
+            <View style={styles.copy}>
+              <SectionHeading eyebrow="Service" title={service.title} lead={service.body} />
+              <Button
+                onPress={() => router.push('/quote' as Href)}
+                iconRight={<ArrowRight color={theme.colors.textOnAccent} size={17} />}
               >
-                {inclusion}
-              </Text>
+                Request a Quote
+              </Button>
             </View>
-          ))}
+            <PhotoPlaceholder label={service.title} style={styles.photo} />
+          </View>
+          <View
+            style={[
+              styles.included,
+              { backgroundColor: theme.colors.surfaceRaised, borderColor: theme.colors.border },
+            ]}
+          >
+            <Text
+              style={{ color: theme.colors.textStrong, fontFamily: theme.fonts.displayBold, fontSize: 22 }}
+            >
+              What’s included
+            </Text>
+            {inclusions.map((inclusion) => (
+              <View key={inclusion} style={styles.inclusion}>
+                <Check color={theme.colors.success} size={18} />
+                <Text
+                  style={{
+                    color: theme.colors.textBody,
+                    flex: 1,
+                    fontFamily: theme.fonts.body,
+                    fontSize: 16,
+                    lineHeight: 24,
+                  }}
+                >
+                  {inclusion}
+                </Text>
+              </View>
+            ))}
+          </View>
+          <CTABand
+            title="Let’s make the next step clear."
+            lead="Start with a short brief. We’ll follow up with the right questions and a site-visit plan."
+            onAction={() => router.push('/quote' as Href)}
+          />
         </View>
-        <CTABand
-          title="Let’s make the next step clear."
-          lead="Start with a short brief. We’ll follow up with the right questions and a site-visit plan."
-          onAction={() => router.push('/quote' as Href)}
-        />
-      </View>
-      <SiteFooter />
-    </ScrollView>
+        <SiteFooter />
+      </ScrollView>
+    </>
   )
 }
 

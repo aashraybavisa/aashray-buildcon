@@ -7,6 +7,7 @@ import { CTABand } from '@/components/cta-band'
 import { ProcessStep } from '@/components/process-step'
 import { ProjectCard } from '@/components/project-card'
 import { SectionHeading } from '@/components/section-heading'
+import { Seo } from '@/components/seo'
 import { ServiceCard } from '@/components/service-card'
 import { SiteFooter } from '@/components/site-footer'
 import { StatCard } from '@/components/stat-card'
@@ -27,141 +28,151 @@ export default function HomeScreen() {
   const projectsRoute = '/projects' as Href
 
   return (
-    <ScrollView
-      contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={[styles.hero, { backgroundColor: theme.colors.bandBg }]}>
-        <View style={[styles.heroOrb, { backgroundColor: theme.colors.accent }]} />
-        <View style={styles.container}>
-          <Text
-            style={[styles.eyebrow, { color: theme.colors.accent, fontFamily: theme.fonts.bodySemibold }]}
-          >
-            RAJKOT · GUJARAT
-          </Text>
-          <Text
-            style={[styles.heroTitle, { color: theme.colors.bandText, fontFamily: theme.fonts.displayBold }]}
-          >
-            Building Rajkot’s future, one project at a time.
-          </Text>
-          <Text
-            style={[styles.heroLead, { color: theme.colors.bandTextMuted, fontFamily: theme.fonts.body }]}
-          >
-            Clear quotes. Accountable teams. Quality construction delivered on time and on budget.
-          </Text>
-          <View style={styles.heroActions}>
-            <Button
-              size="lg"
-              onPress={() => router.push(quoteRoute)}
-              iconRight={<ArrowRight color={theme.colors.textOnAccent} size={19} />}
+    <>
+      <Seo
+        title="Construction Company in Rajkot"
+        description="Aashray Buildcon delivers residential, commercial, and renovation projects across Rajkot and Saurashtra. Request a clear, itemised quote."
+        structuredData
+      />
+      <ScrollView
+        contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={[styles.hero, { backgroundColor: theme.colors.bandBg }]}>
+          <View style={[styles.heroOrb, { backgroundColor: theme.colors.accent }]} />
+          <View style={styles.container}>
+            <Text
+              style={[styles.eyebrow, { color: theme.colors.accent, fontFamily: theme.fonts.bodySemibold }]}
             >
-              Request a Quote
-            </Button>
-            <Button size="lg" variant="inverse" onPress={() => router.push(projectsRoute)}>
-              View Projects
-            </Button>
+              RAJKOT · GUJARAT
+            </Text>
+            <Text
+              style={[
+                styles.heroTitle,
+                { color: theme.colors.bandText, fontFamily: theme.fonts.displayBold },
+              ]}
+            >
+              Building Rajkot’s future, one project at a time.
+            </Text>
+            <Text
+              style={[styles.heroLead, { color: theme.colors.bandTextMuted, fontFamily: theme.fonts.body }]}
+            >
+              Clear quotes. Accountable teams. Quality construction delivered on time and on budget.
+            </Text>
+            <View style={styles.heroActions}>
+              <Button
+                size="lg"
+                onPress={() => router.push(quoteRoute)}
+                iconRight={<ArrowRight color={theme.colors.textOnAccent} size={19} />}
+              >
+                Request a Quote
+              </Button>
+              <Button size="lg" variant="inverse" onPress={() => router.push(projectsRoute)}>
+                View Projects
+              </Button>
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={[styles.statsBand, { backgroundColor: theme.colors.bandDeep }]}>
-        <View style={[styles.container, styles.statsGrid]}>
-          {stats.map((stat) => (
-            <StatCard invert key={stat.label} {...stat} />
-          ))}
+        <View style={[styles.statsBand, { backgroundColor: theme.colors.bandDeep }]}>
+          <View style={[styles.container, styles.statsGrid]}>
+            {stats.map((stat) => (
+              <StatCard invert key={stat.label} {...stat} />
+            ))}
+          </View>
         </View>
-      </View>
 
-      <View style={[styles.section, styles.container]}>
-        <SectionHeading
-          eyebrow="What we build"
-          title="Built around your brief."
-          lead="One accountable team from first site visit to final handover."
-        />
-        <View style={styles.grid}>
-          {services.map((service) => (
-            <View key={service.slug} style={{ width: `${100 / serviceColumns}%`, padding: 6 }}>
-              <ServiceCard {...service} onPress={() => {}} />
-            </View>
-          ))}
-        </View>
-      </View>
-
-      <View style={[styles.raisedSection, { backgroundColor: theme.colors.surfaceRaised }]}>
         <View style={[styles.section, styles.container]}>
           <SectionHeading
-            eyebrow="Selected work"
-            title="Projects that stand the test of time."
-            lead="From custom homes to commercial spaces, every build is planned for the details that matter."
+            eyebrow="What we build"
+            title="Built around your brief."
+            lead="One accountable team from first site visit to final handover."
           />
           <View style={styles.grid}>
-            {projects.slice(0, 3).map((project) => (
-              <View key={project.slug} style={{ flex: 1, minWidth: 220, padding: 6 }}>
-                <ProjectCard project={project} onPress={() => router.push(projectsRoute)} />
+            {services.map((service) => (
+              <View key={service.slug} style={{ width: `${100 / serviceColumns}%`, padding: 6 }}>
+                <ServiceCard {...service} onPress={() => {}} />
               </View>
             ))}
           </View>
-          <Button
-            variant="ghost"
-            onPress={() => router.push(projectsRoute)}
-            iconRight={<ArrowRight color={theme.colors.accentPress} size={17} />}
-          >
-            See all projects
-          </Button>
         </View>
-      </View>
 
-      <View style={[styles.section, styles.container]}>
-        <SectionHeading
-          eyebrow="How we work"
-          title="A better way to build."
-          lead="Our four-step process keeps the work visible, decisions clear, and the schedule moving."
-        />
-        <View style={[styles.processGrid, isDesktop && styles.processGridWide]}>
-          {processSteps.map((step, index) => (
-            <View key={step.n} style={styles.processItem}>
-              <ProcessStep step={step.n} title={step.title} last={index === processSteps.length - 1}>
-                {step.desc}
-              </ProcessStep>
+        <View style={[styles.raisedSection, { backgroundColor: theme.colors.surfaceRaised }]}>
+          <View style={[styles.section, styles.container]}>
+            <SectionHeading
+              eyebrow="Selected work"
+              title="Projects that stand the test of time."
+              lead="From custom homes to commercial spaces, every build is planned for the details that matter."
+            />
+            <View style={styles.grid}>
+              {projects.slice(0, 3).map((project) => (
+                <View key={project.slug} style={{ flex: 1, minWidth: 220, padding: 6 }}>
+                  <ProjectCard project={project} onPress={() => router.push(projectsRoute)} />
+                </View>
+              ))}
             </View>
-          ))}
+            <Button
+              variant="ghost"
+              onPress={() => router.push(projectsRoute)}
+              iconRight={<ArrowRight color={theme.colors.accentPress} size={17} />}
+            >
+              See all projects
+            </Button>
+          </View>
         </View>
-      </View>
 
-      <View style={[styles.raisedSection, { backgroundColor: theme.colors.surfaceRaised }]}>
         <View style={[styles.section, styles.container]}>
-          <SectionHeading eyebrow="Client stories" title="The handover is only the beginning." />
-          <View style={styles.grid}>
-            {testimonials.map((testimonial) => (
-              <View key={testimonial.name} style={{ flex: 1, minWidth: 230, padding: 6 }}>
-                <TestimonialCard {...testimonial} />
+          <SectionHeading
+            eyebrow="How we work"
+            title="A better way to build."
+            lead="Our four-step process keeps the work visible, decisions clear, and the schedule moving."
+          />
+          <View style={[styles.processGrid, isDesktop && styles.processGridWide]}>
+            {processSteps.map((step, index) => (
+              <View key={step.n} style={styles.processItem}>
+                <ProcessStep step={step.n} title={step.title} last={index === processSteps.length - 1}>
+                  {step.desc}
+                </ProcessStep>
               </View>
             ))}
           </View>
         </View>
-      </View>
 
-      <View style={[styles.section, styles.container]}>
-        <CTABand
-          title="Ready to start your project?"
-          lead="Tell us what you’re planning. We’ll arrange a site visit and a clear, itemised quote."
-          onAction={() => router.push(quoteRoute)}
-        />
-      </View>
-      <View
-        style={[
-          styles.trust,
-          { backgroundColor: theme.colors.surfacePage, borderTopColor: theme.colors.border },
-        ]}
-      >
-        <ShieldCheck color={theme.colors.success} size={22} />
-        <Text style={{ color: theme.colors.textBody, fontFamily: theme.fonts.bodyMedium }}>
-          Licensed teams · Weekly progress updates · Snag-free handover
-        </Text>
-        <Check color={theme.colors.accentPress} size={20} />
-      </View>
-      <SiteFooter />
-    </ScrollView>
+        <View style={[styles.raisedSection, { backgroundColor: theme.colors.surfaceRaised }]}>
+          <View style={[styles.section, styles.container]}>
+            <SectionHeading eyebrow="Client stories" title="The handover is only the beginning." />
+            <View style={styles.grid}>
+              {testimonials.map((testimonial) => (
+                <View key={testimonial.name} style={{ flex: 1, minWidth: 230, padding: 6 }}>
+                  <TestimonialCard {...testimonial} />
+                </View>
+              ))}
+            </View>
+          </View>
+        </View>
+
+        <View style={[styles.section, styles.container]}>
+          <CTABand
+            title="Ready to start your project?"
+            lead="Tell us what you’re planning. We’ll arrange a site visit and a clear, itemised quote."
+            onAction={() => router.push(quoteRoute)}
+          />
+        </View>
+        <View
+          style={[
+            styles.trust,
+            { backgroundColor: theme.colors.surfacePage, borderTopColor: theme.colors.border },
+          ]}
+        >
+          <ShieldCheck color={theme.colors.success} size={22} />
+          <Text style={{ color: theme.colors.textBody, fontFamily: theme.fonts.bodyMedium }}>
+            Licensed teams · Weekly progress updates · Snag-free handover
+          </Text>
+          <Check color={theme.colors.accentPress} size={20} />
+        </View>
+        <SiteFooter />
+      </ScrollView>
+    </>
   )
 }
 

@@ -5,6 +5,7 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 import { Button } from '@/components/button'
 import { CTABand } from '@/components/cta-band'
 import { SectionHeading } from '@/components/section-heading'
+import { Seo } from '@/components/seo'
 import { ServiceCard } from '@/components/service-card'
 import { SiteFooter } from '@/components/site-footer'
 import { services } from '@/data/services'
@@ -17,48 +18,54 @@ export default function ServicesScreen() {
   const columns = isDesktop ? 3 : isNarrow ? 1 : 2
 
   return (
-    <ScrollView
-      contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={styles.hero}>
-        <View style={styles.container}>
-          <SectionHeading
-            eyebrow="What we do"
-            title="One accountable partner for every phase of construction."
-            lead="We bring planning, people, and site execution under one clear contract—so your project moves without surprises."
+    <>
+      <Seo
+        title="Construction Services"
+        description="Residential construction, commercial builds, renovations, interiors, project management, and maintenance in Rajkot."
+      />
+      <ScrollView
+        contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.hero}>
+          <View style={styles.container}>
+            <SectionHeading
+              eyebrow="What we do"
+              title="One accountable partner for every phase of construction."
+              lead="We bring planning, people, and site execution under one clear contract—so your project moves without surprises."
+            />
+          </View>
+        </View>
+        <View style={[styles.section, styles.container]}>
+          <View style={styles.grid}>
+            {services.map((service) => (
+              <View key={service.slug} style={{ padding: 6, width: `${100 / columns}%` }}>
+                <ServiceCard
+                  {...service}
+                  meta="View service"
+                  onPress={() => router.push(`/services/${service.slug}` as Href)}
+                />
+              </View>
+            ))}
+          </View>
+        </View>
+        <View style={[styles.section, styles.container]}>
+          <CTABand
+            title="Not sure which service fits?"
+            lead="Tell us what you’re planning and we’ll recommend the right route to site."
+            onAction={() => router.push('/quote' as Href)}
           />
+          <Button
+            variant="ghost"
+            onPress={() => router.push('/projects' as Href)}
+            iconRight={<ArrowRight color={theme.colors.accentPress} size={17} />}
+          >
+            Explore our recent work
+          </Button>
         </View>
-      </View>
-      <View style={[styles.section, styles.container]}>
-        <View style={styles.grid}>
-          {services.map((service) => (
-            <View key={service.slug} style={{ padding: 6, width: `${100 / columns}%` }}>
-              <ServiceCard
-                {...service}
-                meta="View service"
-                onPress={() => router.push(`/services/${service.slug}` as Href)}
-              />
-            </View>
-          ))}
-        </View>
-      </View>
-      <View style={[styles.section, styles.container]}>
-        <CTABand
-          title="Not sure which service fits?"
-          lead="Tell us what you’re planning and we’ll recommend the right route to site."
-          onAction={() => router.push('/quote' as Href)}
-        />
-        <Button
-          variant="ghost"
-          onPress={() => router.push('/projects' as Href)}
-          iconRight={<ArrowRight color={theme.colors.accentPress} size={17} />}
-        >
-          Explore our recent work
-        </Button>
-      </View>
-      <SiteFooter />
-    </ScrollView>
+        <SiteFooter />
+      </ScrollView>
+    </>
   )
 }
 

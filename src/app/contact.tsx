@@ -5,6 +5,7 @@ import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { Button } from '@/components/button'
 import { FormField } from '@/components/form-field'
 import { SectionHeading } from '@/components/section-heading'
+import { Seo } from '@/components/seo'
 import { SiteFooter } from '@/components/site-footer'
 import { company } from '@/data/company'
 import { LeadDeliveryNotConfiguredError, sendLead } from '@/lib/lead'
@@ -54,114 +55,120 @@ export default function ContactScreen() {
   }
 
   return (
-    <ScrollView contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}>
-      <View style={styles.container}>
-        <SectionHeading
-          eyebrow="Contact"
-          title="Bring us your next build."
-          lead="For project enquiries, visits, and general questions, get in touch with our Rajkot team."
-        />
-        <View style={styles.layout}>
-          <View style={styles.details}>
-            {[
-              [MapPin, company.addressFull],
-              [Phone, company.phone],
-              [Mail, company.email],
-              [Clock3, company.hours],
-            ].map(([Icon, detail]) => {
-              const DetailIcon = Icon as typeof MapPin
-              return (
-                <View key={detail as string} style={styles.detail}>
-                  <DetailIcon color={theme.colors.accentPress} size={21} />
+    <>
+      <Seo
+        title="Contact"
+        description="Contact Aashray Buildcon in Rajkot for construction project enquiries, site visits, and general questions."
+      />
+      <ScrollView contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}>
+        <View style={styles.container}>
+          <SectionHeading
+            eyebrow="Contact"
+            title="Bring us your next build."
+            lead="For project enquiries, visits, and general questions, get in touch with our Rajkot team."
+          />
+          <View style={styles.layout}>
+            <View style={styles.details}>
+              {[
+                [MapPin, company.addressFull],
+                [Phone, company.phone],
+                [Mail, company.email],
+                [Clock3, company.hours],
+              ].map(([Icon, detail]) => {
+                const DetailIcon = Icon as typeof MapPin
+                return (
+                  <View key={detail as string} style={styles.detail}>
+                    <DetailIcon color={theme.colors.accentPress} size={21} />
+                    <Text
+                      style={{
+                        color: theme.colors.textBody,
+                        flex: 1,
+                        fontFamily: theme.fonts.body,
+                        fontSize: 16,
+                        lineHeight: 24,
+                      }}
+                    >
+                      {detail as string}
+                    </Text>
+                  </View>
+                )
+              })}
+            </View>
+            <View
+              style={[
+                styles.form,
+                { backgroundColor: theme.colors.surfaceRaised, borderColor: theme.colors.border },
+              ]}
+            >
+              {sent ? (
+                <Text
+                  style={{ color: theme.colors.success, fontFamily: theme.fonts.displayBold, fontSize: 21 }}
+                >
+                  Thanks. We’ll be in touch shortly.
+                </Text>
+              ) : (
+                <>
+                  <FormField
+                    label="Your name"
+                    value={form.name}
+                    onChangeText={update('name')}
+                    placeholder="Full name"
+                    required
+                    autoComplete="name"
+                    error={errors.name}
+                  />
+                  <FormField
+                    label="Email"
+                    value={form.email}
+                    onChangeText={update('email')}
+                    placeholder="you@example.com"
+                    required
+                    autoComplete="email"
+                    keyboardType="email-address"
+                    error={errors.email}
+                  />
+                  <FormField
+                    label="How can we help?"
+                    value={form.message}
+                    onChangeText={update('message')}
+                    placeholder="Tell us a little about your enquiry."
+                    required
+                    multiline
+                    error={errors.message}
+                  />
+                  <TextInput
+                    accessibilityElementsHidden
+                    autoComplete="off"
+                    onChangeText={setWebsite}
+                    style={styles.honeypot}
+                    value={website}
+                  />
+                  {submitError && (
+                    <Text style={{ color: theme.colors.danger, fontFamily: theme.fonts.body, fontSize: 14 }}>
+                      {submitError}
+                    </Text>
+                  )}
+                  <Button block disabled={sending} onPress={submit}>
+                    {sending ? 'Sending…' : 'Send message'}
+                  </Button>
                   <Text
                     style={{
-                      color: theme.colors.textBody,
-                      flex: 1,
+                      color: theme.colors.textMuted,
                       fontFamily: theme.fonts.body,
-                      fontSize: 16,
-                      lineHeight: 24,
+                      fontSize: 12,
+                      lineHeight: 18,
                     }}
                   >
-                    {detail as string}
+                    We protect this form with a spam trap. You can also email or call us directly.
                   </Text>
-                </View>
-              )
-            })}
-          </View>
-          <View
-            style={[
-              styles.form,
-              { backgroundColor: theme.colors.surfaceRaised, borderColor: theme.colors.border },
-            ]}
-          >
-            {sent ? (
-              <Text
-                style={{ color: theme.colors.success, fontFamily: theme.fonts.displayBold, fontSize: 21 }}
-              >
-                Thanks. We’ll be in touch shortly.
-              </Text>
-            ) : (
-              <>
-                <FormField
-                  label="Your name"
-                  value={form.name}
-                  onChangeText={update('name')}
-                  placeholder="Full name"
-                  required
-                  autoComplete="name"
-                  error={errors.name}
-                />
-                <FormField
-                  label="Email"
-                  value={form.email}
-                  onChangeText={update('email')}
-                  placeholder="you@example.com"
-                  required
-                  autoComplete="email"
-                  keyboardType="email-address"
-                  error={errors.email}
-                />
-                <FormField
-                  label="How can we help?"
-                  value={form.message}
-                  onChangeText={update('message')}
-                  placeholder="Tell us a little about your enquiry."
-                  required
-                  multiline
-                  error={errors.message}
-                />
-                <TextInput
-                  accessibilityElementsHidden
-                  autoComplete="off"
-                  onChangeText={setWebsite}
-                  style={styles.honeypot}
-                  value={website}
-                />
-                {submitError && (
-                  <Text style={{ color: theme.colors.danger, fontFamily: theme.fonts.body, fontSize: 14 }}>
-                    {submitError}
-                  </Text>
-                )}
-                <Button block disabled={sending} onPress={submit}>
-                  {sending ? 'Sending…' : 'Send message'}
-                </Button>
-                <Text
-                  style={{
-                    color: theme.colors.textMuted,
-                    fontFamily: theme.fonts.body,
-                    fontSize: 12,
-                    lineHeight: 18,
-                  }}
-                >
-                  We protect this form with a spam trap. You can also email or call us directly.
-                </Text>
-              </>
-            )}
+                </>
+              )}
+            </View>
           </View>
         </View>
-      </View>
-      <SiteFooter />
-    </ScrollView>
+        <SiteFooter />
+      </ScrollView>
+    </>
   )
 }
 

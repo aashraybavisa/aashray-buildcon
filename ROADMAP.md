@@ -1,6 +1,6 @@
 # Aashray Buildcon — Build Roadmap
 
-**Progress: 6 of 9 stages complete (~67%)** · In progress: 1 · Up next: configure Stage 7 lead delivery
+**Progress: 6 of 9 stages complete (~67%)** · In progress: 2 · Up next: configure Stage 7 lead delivery
 
 > See [PLAN.md](PLAN.md) for the full product plan (sitemap, page content, architecture).
 
@@ -57,8 +57,8 @@
 - [ ] Dynamic quote builder
 - [ ] **Input needed:** letterhead design + how the quote builder should work
 
-## Stage 9 · SEO, analytics, launch — ⏳ REMAINING
+## Stage 9 · SEO, analytics, launch — ▶ IN PROGRESS
 
-- [ ] Meta, JSON-LD, sitemap
+- [x] Meta, JSON-LD, robots, and static sitemap route
 - [ ] Analytics + accessibility pass
 - [ ] Deploy web + EAS mobile build
