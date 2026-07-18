@@ -9,12 +9,19 @@ import { useResponsive } from '@/hooks/use-responsive'
 import { useTheme } from '@/theme/theme'
 import { company } from '@/data/company'
 
-/** Shared route header. Navigation destinations are added alongside their route screens. */
+const navigation = [
+  { label: 'Services', path: '/services' },
+  { label: 'Projects', path: '/projects' },
+  { label: 'About', path: '/about' },
+  { label: 'Contact', path: '/contact' },
+] as const
+
+/** Shared route header for marketing routes. */
 export function SiteHeader() {
   const theme = useTheme()
   const { isNarrow } = useResponsive()
   const [menuOpen, setMenuOpen] = useState(false)
-  const navigate = (path: '/' | '/projects' | '/quote') => {
+  const navigate = (path: string) => {
     setMenuOpen(false)
     router.push(path as Href)
   }
@@ -44,6 +51,22 @@ export function SiteHeader() {
           </Pressable>
         ) : (
           <View style={styles.actions}>
+            <View style={styles.desktopNav}>
+              {navigation.map((item) => (
+                <Pressable
+                  key={item.path}
+                  accessibilityRole="link"
+                  onPress={() => navigate(item.path)}
+                  style={styles.desktopLink}
+                >
+                  <Text
+                    style={{ color: theme.colors.textBody, fontFamily: theme.fonts.bodyMedium, fontSize: 14 }}
+                  >
+                    {item.label}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
             <Button
               size="sm"
               variant="ghost"
@@ -65,27 +88,28 @@ export function SiteHeader() {
             { backgroundColor: theme.colors.surfacePage, borderTopColor: theme.colors.border },
           ]}
         >
-          {(['Home', 'Projects', 'Request a Quote'] as const).map((label) => {
-            const path = label === 'Home' ? '/' : label === 'Projects' ? '/projects' : '/quote'
-            return (
-              <Pressable
-                accessibilityRole="link"
-                key={label}
-                onPress={() => navigate(path)}
-                style={styles.mobileLink}
-              >
-                <Text
-                  style={{
-                    color: theme.colors.textStrong,
-                    fontFamily: theme.fonts.displaySemibold,
-                    fontSize: 17,
-                  }}
+          {[{ label: 'Home', path: '/' }, ...navigation, { label: 'Request a Quote', path: '/quote' }].map(
+            ({ label, path }) => {
+              return (
+                <Pressable
+                  accessibilityRole="link"
+                  key={label}
+                  onPress={() => navigate(path)}
+                  style={styles.mobileLink}
                 >
-                  {label}
-                </Text>
-              </Pressable>
-            )
-          })}
+                  <Text
+                    style={{
+                      color: theme.colors.textStrong,
+                      fontFamily: theme.fonts.displaySemibold,
+                      fontSize: 17,
+                    }}
+                  >
+                    {label}
+                  </Text>
+                </Pressable>
+              )
+            },
+          )}
         </View>
       )}
     </View>
@@ -104,6 +128,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   actions: { alignItems: 'center', flexDirection: 'row', gap: 8 },
+  desktopNav: { alignItems: 'center', flexDirection: 'row', gap: 4 },
+  desktopLink: { paddingHorizontal: 8, paddingVertical: 10 },
   menu: { alignItems: 'center', height: 44, justifyContent: 'center', width: 44 },
   mobileMenu: { borderTopWidth: 1, paddingHorizontal: 24, paddingVertical: 8 },
   mobileLink: { paddingVertical: 14 },

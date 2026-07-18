@@ -1,6 +1,6 @@
 # Aashray Buildcon — Build Roadmap
 
-**Progress: 4 of 9 stages complete (~44%)** · In progress: 1 · Up next: complete Stage 5
+**Progress: 5 of 9 stages complete (~56%)** · In progress: 0 · Up next: Stage 6
 
 > See [PLAN.md](PLAN.md) for the full product plan (sitemap, page content, architecture).
 
@@ -27,12 +27,12 @@
 - [x] Responsive header + footer
 - [x] Mobile bottom tabs
 
-## Stage 5 · Marketing screens — ▶ IN PROGRESS
+## Stage 5 · Marketing screens — ✅ DONE
 - [x] Home
-- [ ] Services
+- [x] Services
 - [x] Projects (with filter)
 - [x] Quote
-- [ ] About, Contact
+- [x] About, Contact
 
 ## Stage 6 · App icon, splash and favicon — ⏳ REMAINING
 - [ ] Rasterize logo to PNG sizes

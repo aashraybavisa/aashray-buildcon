@@ -42,8 +42,11 @@ export default function TabLayout() {
       <View style={styles.root}>
         <Stack screenOptions={{ header: () => <SiteHeader />, headerShadowVisible: false }}>
           <Stack.Screen name="index" />
+          <Stack.Screen name="about" />
+          <Stack.Screen name="contact" />
           <Stack.Screen name="projects" />
           <Stack.Screen name="quote" />
+          <Stack.Screen name="services" />
           <Stack.Screen name="explore" />
         </Stack>
         <MobileBottomNav />
