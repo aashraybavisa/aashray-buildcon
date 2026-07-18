@@ -38,7 +38,16 @@ export const palette = {
 } as const;
 
 /* ---- Semantic colour themes ---- */
-export const lightColors = {
+export type ThemeColors = {
+  surfacePage: string; surfaceRaised: string; surfaceCard: string; surfaceSunken: string; surfaceInverse: string;
+  textStrong: string; textBody: string; textMuted: string; textInverse: string; textOnAccent: string;
+  accent: string; accentHover: string; accentPress: string; accentSoft: string; accentBorder: string;
+  border: string; borderStrong: string; focusRing: string;
+  success: string; successSoft: string; danger: string; dangerSoft: string; info: string; infoSoft: string;
+  bandBg: string; bandDeep: string; bandBorder: string; bandText: string; bandTextMuted: string; bandTextFaint: string;
+};
+
+export const lightColors: ThemeColors = {
   surfacePage: palette.white,
   surfaceRaised: palette.graphite50,
   surfaceCard: palette.white,
@@ -114,8 +123,6 @@ export const darkColors: typeof lightColors = {
   bandTextMuted: palette.graphite300,
   bandTextFaint: palette.graphite400,
 };
-
-export type ThemeColors = typeof lightColors;
 
 /* ---- Spacing (4-based) ---- */
 export const space = {

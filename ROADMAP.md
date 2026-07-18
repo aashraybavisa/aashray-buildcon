@@ -1,6 +1,6 @@
 # Aashray Buildcon — Build Roadmap
 
-**Progress: 2 of 9 stages complete (~22%)** · In progress: 0 · Up next: Stage 3
+**Progress: 3 of 9 stages complete (~33%)** · In progress: 0 · Up next: Stage 4
 
 > See [PLAN.md](PLAN.md) for the full product plan (sitemap, page content, architecture).
 
@@ -17,12 +17,12 @@
 - [x] Light + dark, type scale, shadows
 - [x] Data layer (`src/data`) + fonts + icons installed
 
-## Stage 3 · Core UI components — ▶ UP NEXT
-- [ ] Logo, Button, Badge, Eyebrow
-- [ ] Section heading, cards (Service/Project/Testimonial), process step
-- [ ] CTA band, form field, photo placeholder
+## Stage 3 · Core UI components — ✅ DONE
+- [x] Logo, Button, Badge, Eyebrow
+- [x] Section heading, cards (Service/Project/Testimonial), process step
+- [x] CTA band, form field, photo placeholder
 
-## Stage 4 · Navigation and chrome — ⏳ REMAINING
+## Stage 4 · Navigation and chrome — ▶ UP NEXT
 - [ ] Font loading + theme in root layout
 - [ ] Responsive header + footer
 - [ ] Mobile bottom tabs
