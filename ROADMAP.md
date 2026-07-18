@@ -1,6 +1,6 @@
 # Aashray Buildcon — Build Roadmap
 
-**Progress: 6 of 9 stages complete (~67%)** · In progress: 0 · Up next: Stage 7
+**Progress: 6 of 9 stages complete (~67%)** · In progress: 1 · Up next: configure Stage 7 lead delivery
 
 > See [PLAN.md](PLAN.md) for the full product plan (sitemap, page content, architecture).
 
@@ -44,10 +44,10 @@
 - [x] Rasterize logo to PNG sizes
 - [x] Update `app.json` with brand icon, splash, adaptive icon, and favicon
 
-## Stage 7 · Forms and lead capture — ⏳ REMAINING
+## Stage 7 · Forms and lead capture — ▶ IN PROGRESS
 
-- [ ] Wire quote + contact to a form service
-- [ ] Validation, spam guard, success state
+- [ ] Wire quote + contact to an approved form-service or serverless endpoint
+- [x] Validation, spam guard, error and success states
 - [ ] **Decision needed:** where should leads go — email / spreadsheet / CRM?
 
 ## Stage 8 · Admin section — ⏳ REMAINING

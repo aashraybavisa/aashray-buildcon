@@ -1,21 +1,57 @@
 import { useState } from 'react'
 import { Clock3, Mail, MapPin, Phone } from 'lucide-react-native'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 
 import { Button } from '@/components/button'
 import { FormField } from '@/components/form-field'
 import { SectionHeading } from '@/components/section-heading'
 import { SiteFooter } from '@/components/site-footer'
 import { company } from '@/data/company'
+import { LeadDeliveryNotConfiguredError, sendLead } from '@/lib/lead'
 import { useTheme } from '@/theme/theme'
 
 export default function ContactScreen() {
   const theme = useTheme()
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [website, setWebsite] = useState('')
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const update = (field: keyof typeof form) => (value: string) =>
     setForm((current) => ({ ...current, [field]: value }))
-  const canSubmit = Boolean(form.name.trim() && form.email.trim() && form.message.trim())
+  const submit = async () => {
+    const nextErrors: Record<string, string> = {}
+    if (!form.name.trim()) nextErrors.name = 'Please enter your name.'
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = 'Enter a valid email address.'
+    if (!form.message.trim()) nextErrors.message = 'Please add a short message.'
+    setErrors(nextErrors)
+    setSubmitError(null)
+    if (Object.keys(nextErrors).length) return
+    if (website) {
+      setSent(true)
+      return
+    }
+
+    setSending(true)
+    try {
+      await sendLead({
+        form: 'contact',
+        name: form.name.trim(),
+        email: form.email.trim(),
+        message: form.message.trim(),
+      })
+      setSent(true)
+    } catch (error) {
+      setSubmitError(
+        error instanceof LeadDeliveryNotConfiguredError
+          ? 'Lead delivery is not configured yet. Please email or call us directly.'
+          : 'We could not send your message. Please try again or contact us directly.',
+      )
+    } finally {
+      setSending(false)
+    }
+  }
 
   return (
     <ScrollView contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}>
@@ -73,6 +109,7 @@ export default function ContactScreen() {
                   placeholder="Full name"
                   required
                   autoComplete="name"
+                  error={errors.name}
                 />
                 <FormField
                   label="Email"
@@ -82,6 +119,7 @@ export default function ContactScreen() {
                   required
                   autoComplete="email"
                   keyboardType="email-address"
+                  error={errors.email}
                 />
                 <FormField
                   label="How can we help?"
@@ -90,9 +128,22 @@ export default function ContactScreen() {
                   placeholder="Tell us a little about your enquiry."
                   required
                   multiline
+                  error={errors.message}
                 />
-                <Button block disabled={!canSubmit} onPress={() => setSent(true)}>
-                  Send message
+                <TextInput
+                  accessibilityElementsHidden
+                  autoComplete="off"
+                  onChangeText={setWebsite}
+                  style={styles.honeypot}
+                  value={website}
+                />
+                {submitError && (
+                  <Text style={{ color: theme.colors.danger, fontFamily: theme.fonts.body, fontSize: 14 }}>
+                    {submitError}
+                  </Text>
+                )}
+                <Button block disabled={sending} onPress={submit}>
+                  {sending ? 'Sending…' : 'Send message'}
                 </Button>
                 <Text
                   style={{
@@ -102,7 +153,7 @@ export default function ContactScreen() {
                     lineHeight: 18,
                   }}
                 >
-                  This local form will connect to lead delivery in Stage 7.
+                  We protect this form with a spam trap. You can also email or call us directly.
                 </Text>
               </>
             )}
@@ -127,4 +178,5 @@ const styles = StyleSheet.create({
   details: { flex: 1, gap: 22, minWidth: 260, paddingVertical: 12 },
   detail: { alignItems: 'flex-start', flexDirection: 'row', gap: 12 },
   form: { borderRadius: 16, borderWidth: 1, flex: 1, gap: 18, minWidth: 280, padding: 24 },
+  honeypot: { height: 1, left: -10000, opacity: 0, position: 'absolute', width: 1 },
 })
