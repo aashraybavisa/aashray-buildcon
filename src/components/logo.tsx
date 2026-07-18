@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native'
 
+import { company } from '@/data/company'
 import { useTheme } from '@/theme/theme'
 
 type LogoProps = {
@@ -19,7 +20,7 @@ export function Logo({ compact = false, inverse = false, style }: LogoProps) {
       {!compact && (
         <View>
           <Text style={[styles.name, { color: wordmarkColor, fontFamily: theme.fonts.displayBold }]}>
-            Aashray
+            {company.name}
           </Text>
           <Text
             style={[
@@ -30,7 +31,7 @@ export function Logo({ compact = false, inverse = false, style }: LogoProps) {
               },
             ]}
           >
-            BUILDCON
+            {company.tagline}
           </Text>
         </View>
       )}

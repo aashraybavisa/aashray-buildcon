@@ -27,7 +27,7 @@ export default function ServicesScreen() {
         contentContainerStyle={{ backgroundColor: theme.colors.surfacePage, paddingBottom: 62 }}
         showsVerticalScrollIndicator={false}
       >
-        <View style={styles.hero}>
+        <View style={[styles.hero, { backgroundColor: theme.colors.surfaceRaised }]}>
           <View style={styles.container}>
             <SectionHeading
               eyebrow="What we do"
@@ -71,7 +71,7 @@ export default function ServicesScreen() {
 
 const styles = StyleSheet.create({
   container: { alignSelf: 'center', maxWidth: 1200, paddingHorizontal: 24, width: '100%' },
-  hero: { backgroundColor: '#F6F7F8', paddingVertical: 72 },
+  hero: { paddingVertical: 72 },
   section: { gap: 30, paddingVertical: 72 },
   grid: { flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -6 },
 })

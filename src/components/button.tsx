@@ -71,7 +71,14 @@ export function Button({
     >
       <View style={styles.contents}>
         {iconLeft}
-        <Text style={{ color: tone.color, fontFamily: theme.fonts.displaySemibold, fontSize }}>
+        <Text
+          style={{
+            color: tone.color,
+            fontFamily: theme.fonts.displaySemibold,
+            fontSize,
+            lineHeight: Math.round(fontSize * 1.2),
+          }}
+        >
           {children}
         </Text>
         {iconRight}
@@ -81,7 +88,14 @@ export function Button({
 }
 
 const styles = StyleSheet.create({
-  button: { alignSelf: 'flex-start', borderRadius: 10, borderWidth: 1, minHeight: 44 },
+  button: {
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    borderRadius: 10,
+    borderWidth: 1,
+    justifyContent: 'center',
+    minHeight: 44,
+  },
   contents: { alignItems: 'center', flexDirection: 'row', gap: 8, justifyContent: 'center' },
   pressed: { transform: [{ translateY: 1 }] },
 })
