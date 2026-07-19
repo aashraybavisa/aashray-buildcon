@@ -1,6 +1,6 @@
 /** Company details. Placeholder values — replace with the client's real data. */
 export const company = {
-  name: 'Aashray Buildcon',
+  name: 'Ashray Buildcon',
   city: 'Rajkot',
   region: 'Saurashtra, Gujarat',
   since: 2009,
