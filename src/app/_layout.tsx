@@ -1,4 +1,4 @@
-import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from 'expo-router'
+import { DarkTheme, DefaultTheme, Stack, ThemeProvider, usePathname } from 'expo-router'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
@@ -12,6 +12,7 @@ import { LanguageProvider } from '@/i18n/language-provider'
 SplashScreen.preventAutoHideAsync()
 
 export default function TabLayout() {
+  const isStandalonePage = usePathname() === '/pr-status'
   const colorScheme = useColorScheme()
   const [fontsLoaded, fontError] = useFonts({
     Inter_400Regular: require('@/assets/fonts/Inter_400Regular.ttf'),
@@ -33,18 +34,18 @@ export default function TabLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <LanguageProvider>
-        <AnimatedSplashOverlay />
+        {!isStandalonePage && <AnimatedSplashOverlay />}
         <View style={styles.root}>
           <Stack screenOptions={{ header: () => <SiteHeader />, headerShadowVisible: false }}>
             <Stack.Screen name="index" />
             <Stack.Screen name="about" />
             <Stack.Screen name="contact" />
             <Stack.Screen name="projects" />
-            <Stack.Screen name="pr-status" />
+            <Stack.Screen name="pr-status" options={{ headerShown: false }} />
             <Stack.Screen name="quote" />
             <Stack.Screen name="services" />
           </Stack>
-          <MobileBottomNav />
+          {!isStandalonePage && <MobileBottomNav />}
         </View>
       </LanguageProvider>
     </ThemeProvider>

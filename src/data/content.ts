@@ -2,11 +2,11 @@ const en = {
   prStatus: {
     title: 'PR Status',
     description: 'Your permanent residence application status and updates.',
-    eyebrow: 'Permanent residence',
-    heading: 'Federal Express Entry PNP File – In Review',
+    eyebrow: 'Permanent Residence Status - Aashray Bavisa',
+    heading: 'Federal Express Entry PNP File – Under Review',
     statusLabel: 'Current status',
-    status: 'In Review',
-    updatesTitle: 'Application timeline',
+    status: 'File Under Review',
+    updatesTitle: 'Application Timeline',
     points: 'CRS Score = 1047 points',
     lastUpdated: 'Last updated: October 16, 2026 at 7:25 PM MDT (Edmonton)',
     updates: [
@@ -199,10 +199,10 @@ const gu: typeof en = {
   prStatus: {
     title: 'PR સ્થિતિ',
     description: 'તમારી કાયમી નિવાસની અરજીની સ્થિતિ અને અપડેટ્સ.',
-    eyebrow: 'કાયમી નિવાસ',
+    eyebrow: 'કાયમી નિવાસની સ્થિતિ - આશ્રય બાવીસા',
     heading: 'ફેડરલ એક્સપ્રેસ એન્ટ્રી PNP ફાઇલ – સમીક્ષા હેઠળ',
     statusLabel: 'વર્તમાન સ્થિતિ',
-    status: 'સમીક્ષા હેઠળ',
+    status: 'ફાઇલ સમીક્ષા હેઠળ',
     updatesTitle: 'અરજીનો ઘટનાક્રમ',
     points: 'CRS સ્કોર = 1047 પોઇન્ટ્સ',
     lastUpdated: 'છેલ્લો અપડેટ: 16 ઑક્ટોબર, 2026, સાંજે 7:25 MDT (એડમન્ટન)',
