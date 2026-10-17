@@ -12,7 +12,8 @@ import { LanguageProvider } from '@/i18n/language-provider'
 SplashScreen.preventAutoHideAsync()
 
 export default function TabLayout() {
-  const isStandalonePage = usePathname() === '/pr-status'
+  const pathname = usePathname()
+  const isStandalonePage = pathname === '/pr-status'
   const colorScheme = useColorScheme()
   const [fontsLoaded, fontError] = useFonts({
     Inter_400Regular: require('@/assets/fonts/Inter_400Regular.ttf'),
