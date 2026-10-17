@@ -16,6 +16,13 @@ export default function PRStatusScreen() {
   const { copy } = useLanguage()
   const content = copy.prStatus
   const colors = theme.colors
+  const dateAccent = colors.accentPress
+  const isLight = theme.scheme === 'light'
+  const heroBackground = isLight ? colors.surfaceCard : colors.bandDeep
+  const heroBorder = isLight ? colors.border : colors.bandBorder
+  const heroText = isLight ? colors.textStrong : colors.bandText
+  const heroAccent = colors.accentPress
+  const reviewText = isLight ? '#216E3B' : '#A4E8BE'
   const muted = { color: colors.textMuted, fontFamily: theme.fonts.body }
 
   return (
@@ -59,20 +66,20 @@ export default function PRStatusScreen() {
             styles.hero,
             theme.shadows.md,
             {
-              backgroundColor: colors.bandDeep,
-              borderColor: colors.bandBorder,
+              backgroundColor: heroBackground,
+              borderColor: heroBorder,
               padding: isNarrow ? 24 : 32,
             },
           ]}
         >
-          <View pointerEvents="none" style={[styles.orbit, { borderColor: colors.bandBorder }]} />
-          <View pointerEvents="none" style={[styles.orbitInner, { borderColor: colors.bandBorder }]} />
+          <View pointerEvents="none" style={[styles.orbit, { borderColor: heroBorder }]} />
+          <View pointerEvents="none" style={[styles.orbitInner, { borderColor: heroBorder }]} />
           <View style={styles.heroTop}>
             <View style={styles.heroLabel}>
-              <FileText size={16} color={colors.accent} />
+              <FileText size={16} color={heroAccent} />
               <Text
                 style={{
-                  color: colors.accent,
+                  color: heroAccent,
                   fontFamily: theme.fonts.bodySemibold,
                   fontSize: 15,
                   lineHeight: 22,
@@ -88,7 +95,7 @@ export default function PRStatusScreen() {
               <Svg width={52} height={52} style={{ flexShrink: 0 }} viewBox="0 0 24 24" aria-hidden={true}>
                 <Path
                   d="M12 1 14 5.5 16 4.5 15 10.5 19 7.5 20 10 23 9 22 14 24 15 15 18 16 21 12.7 20.5 12.7 24 11.3 24 11.3 20.5 8 21 9 18 0 15 2 14 1 9 4 10 5 7.5 9 10.5 8 4.5 10 5.5Z"
-                  fill={colors.accent}
+                  fill={colors.accentPress}
                 />
               </Svg>
             </View>
@@ -98,7 +105,7 @@ export default function PRStatusScreen() {
             style={[
               styles.heroTitle,
               {
-                color: colors.bandText,
+                color: heroText,
                 fontFamily: theme.fonts.displaySemibold,
                 fontSize: isNarrow ? 24 : 32,
                 lineHeight: isNarrow ? 34 : 44,
@@ -107,11 +114,16 @@ export default function PRStatusScreen() {
           >
             {content.heading}
           </Text>
-          <View style={styles.reviewPill}>
-            <Clock3 size={18} color="#A4E8BE" strokeWidth={1.8} />
+          <View
+            style={[
+              styles.reviewPill,
+              isLight && { backgroundColor: colors.successSoft, borderColor: '#BDDCC8' },
+            ]}
+          >
+            <Clock3 size={18} color={reviewText} strokeWidth={1.8} />
             <Text
               style={{
-                color: '#A4E8BE',
+                color: reviewText,
                 fontFamily: theme.fonts.bodySemibold,
                 fontSize: 15,
                 lineHeight: 22,
@@ -120,11 +132,11 @@ export default function PRStatusScreen() {
               {content.status}
             </Text>
           </View>
-          <View style={[styles.scoreRow, { borderTopColor: colors.bandBorder }]}>
-            <View style={[styles.scoreAccent, { backgroundColor: colors.accent }]} />
+          <View style={[styles.scoreRow, { borderTopColor: heroBorder }]}>
+            <View style={[styles.scoreAccent, { backgroundColor: colors.accentPress }]} />
             <Text
               style={{
-                color: colors.bandText,
+                color: heroText,
                 fontFamily: theme.fonts.displaySemibold,
                 fontSize: isNarrow ? 20 : 24,
                 lineHeight: 32,
@@ -147,7 +159,7 @@ export default function PRStatusScreen() {
         >
           <View style={[styles.timelineHeader, { borderBottomColor: colors.border }]}>
             <View style={styles.timelineLabel}>
-              <View style={[styles.headingMarker, { backgroundColor: colors.accent }]} />
+              <View style={[styles.headingMarker, { backgroundColor: colors.accentPress }]} />
               <Text
                 accessibilityRole="header"
                 style={{
@@ -169,14 +181,14 @@ export default function PRStatusScreen() {
                     style={[
                       styles.node,
                       {
-                        backgroundColor: index === 0 ? colors.accent : colors.successSoft,
-                        borderColor: index === 0 ? colors.accent : colors.border,
+                        backgroundColor: index === 0 ? colors.accentPress : colors.successSoft,
+                        borderColor: index === 0 ? colors.accentPress : colors.border,
                       },
                     ]}
                   >
                     <Check
                       size={16}
-                      color={index === 0 ? colors.textOnAccent : colors.success}
+                      color={index === 0 ? (isLight ? '#FFFFFF' : colors.textOnAccent) : colors.success}
                       strokeWidth={2.5}
                     />
                   </View>
@@ -187,7 +199,7 @@ export default function PRStatusScreen() {
                 <View style={[styles.entryContent, index === content.updates.length - 1 && styles.lastEntry]}>
                   <Text
                     style={{
-                      color: index === 0 ? colors.accentPress : colors.textMuted,
+                      color: index === 0 ? dateAccent : colors.textMuted,
                       fontFamily: theme.fonts.bodySemibold,
                       fontSize: 13,
                       lineHeight: 22,

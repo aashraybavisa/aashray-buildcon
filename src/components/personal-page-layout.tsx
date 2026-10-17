@@ -14,6 +14,7 @@ export function PersonalPageLayout({ name, action, children }: Props) {
   const theme = useTheme()
   const { isNarrow } = useResponsive()
   const colors = theme.colors
+  const accentText = colors.accentPress
   const gutter = isNarrow ? 16 : 24
 
   return (
@@ -45,7 +46,7 @@ export function PersonalPageLayout({ name, action, children }: Props) {
           >
             <Text
               style={{
-                color: colors.accentPress,
+                color: accentText,
                 fontFamily: theme.fonts.displayBold,
                 fontSize: isNarrow ? 15 : 18,
               }}
@@ -58,7 +59,7 @@ export function PersonalPageLayout({ name, action, children }: Props) {
             numberOfLines={1}
             style={{
               flex: 1,
-              color: colors.accentPress,
+              color: accentText,
               fontFamily: theme.fonts.displaySemibold,
               fontSize: isNarrow ? 20 : 30,
               lineHeight: isNarrow ? 28 : 38,
