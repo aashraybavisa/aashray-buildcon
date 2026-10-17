@@ -1,7 +1,7 @@
 const en = {
   prStatus: {
     title: 'PR Status',
-    description: 'Your permanent residence application status and updates.',
+    description: 'PR status and updates',
     eyebrow: 'Aashray Bavisa',
     category: 'PERMANENT RESIDENCE',
     heading: 'Federal Express Entry PNP File',
