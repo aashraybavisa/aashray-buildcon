@@ -1,4 +1,20 @@
 const en = {
+  prStatus: {
+    title: 'PR Status',
+    description: 'Your permanent residence application status and updates.',
+    eyebrow: 'Permanent residence',
+    heading: 'Federal Express Entry PNP File – In Review',
+    statusLabel: 'Current status',
+    status: 'In Review',
+    updatesTitle: 'Application timeline',
+    points: 'CRS Score = 1047 points',
+    lastUpdated: 'Last updated: October 16, 2026 at 7:25 PM MDT (Edmonton)',
+    updates: [
+      { date: 'October 13, 2026', detail: 'Express Entry Invitation to Apply (ITA) received.' },
+      { date: 'October 1, 2026', detail: 'Alberta PNP nomination approved.' },
+      { date: 'July 8, 2026', detail: 'Alberta PNP invitation received.' },
+    ],
+  },
   common: {
     quote: 'Request a Quote',
     callUs: 'Call Us',
@@ -180,6 +196,22 @@ const en = {
 }
 
 const gu: typeof en = {
+  prStatus: {
+    title: 'PR સ્થિતિ',
+    description: 'તમારી કાયમી નિવાસની અરજીની સ્થિતિ અને અપડેટ્સ.',
+    eyebrow: 'કાયમી નિવાસ',
+    heading: 'ફેડરલ એક્સપ્રેસ એન્ટ્રી PNP ફાઇલ – સમીક્ષા હેઠળ',
+    statusLabel: 'વર્તમાન સ્થિતિ',
+    status: 'સમીક્ષા હેઠળ',
+    updatesTitle: 'અરજીનો ઘટનાક્રમ',
+    points: 'CRS સ્કોર = 1047 પોઇન્ટ્સ',
+    lastUpdated: 'છેલ્લો અપડેટ: 16 ઑક્ટોબર, 2026, સાંજે 7:25 MDT (એડમન્ટન)',
+    updates: [
+      { date: '13 ઑક્ટોબર, 2026', detail: 'એક્સપ્રેસ એન્ટ્રી માટે અરજી કરવાનું આમંત્રણ (ITA) મળ્યું.' },
+      { date: '1 ઑક્ટોબર, 2026', detail: 'આલ્બર્ટા PNP નોમિનેશન મંજૂર થયું.' },
+      { date: '8 જુલાઈ, 2026', detail: 'આલ્બર્ટા PNP આમંત્રણ મળ્યું.' },
+    ],
+  },
   common: {
     quote: 'ક્વોટ માટે વિનંતી',
     callUs: 'અમને કૉલ કરો',

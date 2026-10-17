@@ -40,6 +40,7 @@ export default function TabLayout() {
             <Stack.Screen name="about" />
             <Stack.Screen name="contact" />
             <Stack.Screen name="projects" />
+            <Stack.Screen name="pr-status" />
             <Stack.Screen name="quote" />
             <Stack.Screen name="services" />
           </Stack>

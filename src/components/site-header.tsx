@@ -22,6 +22,7 @@ export function SiteHeader() {
     { label: copy.navigation.projects, path: '/projects' },
     { label: copy.navigation.about, path: '/about' },
     { label: copy.navigation.contact, path: '/contact' },
+    { label: copy.prStatus.title, path: '/pr-status' },
   ] as const
   const navigate = (path: string) => {
     setMenuOpen(false)
