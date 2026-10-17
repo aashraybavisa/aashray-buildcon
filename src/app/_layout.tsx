@@ -2,12 +2,13 @@ import { DarkTheme, DefaultTheme, Stack, ThemeProvider, usePathname } from 'expo
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
-import { StyleSheet, useColorScheme, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon'
 import { SiteHeader } from '@/components/site-header'
 import { MobileBottomNav } from '@/components/mobile-bottom-nav'
 import { LanguageProvider } from '@/i18n/language-provider'
+import { useColorScheme } from '@/hooks/use-color-scheme'
 
 SplashScreen.preventAutoHideAsync()
 

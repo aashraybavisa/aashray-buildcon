@@ -2,7 +2,7 @@
  * useTheme — returns the active colour set + shadows for the current colour scheme,
  * plus the shared token groups. Follows the OS colour scheme.
  */
-import { useColorScheme } from 'react-native'
+import { useColorScheme } from '@/hooks/use-color-scheme'
 
 import {
   darkColors,
