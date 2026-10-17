@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, View, type ScrollViewProps } from 'react-native'
 
 import { useResponsive } from '@/hooks/use-responsive'
 import { useTheme } from '@/theme/theme'
@@ -8,9 +8,10 @@ type Props = {
   name: string
   action: ReactNode
   children: ReactNode
+  scrollTracking?: Pick<ScrollViewProps, 'onScroll' | 'onLayout' | 'onContentSizeChange'>
 }
 
-export function PersonalPageLayout({ name, action, children }: Props) {
+export function PersonalPageLayout({ name, action, children, scrollTracking }: Props) {
   const theme = useTheme()
   const { isNarrow } = useResponsive()
   const colors = theme.colors
@@ -70,7 +71,7 @@ export function PersonalPageLayout({ name, action, children }: Props) {
           {action}
         </View>
       </View>
-      <ScrollView contentContainerStyle={styles.scroll}>
+      <ScrollView contentContainerStyle={styles.scroll} {...scrollTracking} scrollEventThrottle={100}>
         <View
           style={[
             styles.column,

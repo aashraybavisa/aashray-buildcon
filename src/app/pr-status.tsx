@@ -7,13 +7,15 @@ import { ExternalLink } from '@/components/external-link'
 import { PersonalPageLayout } from '@/components/personal-page-layout'
 
 import { useResponsive } from '@/hooks/use-responsive'
+import { usePRAnalytics } from '@/hooks/use-pr-analytics'
 import { useLanguage } from '@/i18n/language-provider'
 import { useTheme } from '@/theme/theme'
 
 export default function PRStatusScreen() {
   const theme = useTheme()
   const { isNarrow } = useResponsive()
-  const { copy } = useLanguage()
+  const { copy, language } = useLanguage()
+  const scrollTracking = usePRAnalytics(theme.scheme, language)
   const content = copy.prStatus
   const colors = theme.colors
   const dateAccent = colors.accentPress
@@ -38,6 +40,7 @@ export default function PRStatusScreen() {
 
       <PersonalPageLayout
         name={content.eyebrow}
+        scrollTracking={scrollTracking}
         action={
           <ExternalLink href="https://www.linkedin.com/in/aashray-bavisa/" asChild>
             <Pressable

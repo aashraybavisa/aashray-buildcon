@@ -1,5 +1,36 @@
 # Welcome to your Expo app 👋
 
+## PR Status analytics
+
+The standalone `/pr-status` page uses Umami Cloud with website ID
+`10832e37-7cb8-4886-baa7-f83f5706da8f`. View reports in your account at
+<https://cloud.umami.is>. The website ID is public configuration, not a secret.
+
+Tracking only runs on the deployed `aashraybavisa.github.io/aashray-buildcon/pr-status`
+page (including its `.html` and trailing-slash variants). Local development and other
+Buildcon pages are excluded. Automatic pageviews are disabled; the page sends one
+pageview per mount, with Umami's standard referral, browser, device, language, and
+approximate location information. Browser performance collection is enabled.
+
+Custom events:
+
+- `linkedin_click`: a click on the LinkedIn link.
+- `scroll_depth`: 25, 50, 75, and 100 percent of the scroll content viewed, once per
+  milestone per visit. Content already visible on arrival counts as viewed.
+- `engaged_visit`: 15, 30, 60, 120, and 300 seconds of focused, visible reading time.
+- `page_preferences`: the page's appearance and content language, on initial load
+  and changes.
+
+No distinct visitor ID, account identity, or form contents are sent. URL hashes and
+non-campaign query parameters are removed. Only standard `utm_*` campaign parameters
+are retained; avoid putting personal information in campaign tags. Referrer query
+parameters are removed. Browser Do Not Track and Umami's visit-exclusion setting
+are respected. Blocked analytics does not prevent the page or LinkedIn link working.
+
+In Umami, filter to this page or the `pr-status` tag and use the Events view to see
+the custom metrics. The free plan counts pageviews, custom events, and stored event
+properties toward its event allowance. Tracking is not retroactive.
+
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started
